@@ -1,0 +1,819 @@
+[
+  {
+    "id": "p001",
+    "type": "mcq",
+    "question": "I ___ from Moscow, but I live in Kazan now.",
+    "choices": ["am come", "come", "came", "was come"],
+    "answer": "come",
+    "weight": 1
+  },
+  {
+    "id": "p002",
+    "type": "mcq",
+    "question": "She ___ English every day after work.",
+    "choices": ["study", "is study", "studies", "studied"],
+    "answer": "studies",
+    "weight": 1
+  },
+  {
+    "id": "p003",
+    "type": "gap",
+    "text": "It is ___ cold day today.",
+    "solution": ["a", " a "],
+    "weight": 1
+  },
+  {
+    "id": "p004",
+    "type": "mcq",
+    "question": "We usually have lunch ___ noon.",
+    "choices": ["in", "at", "on", "for"],
+    "answer": "at",
+    "weight": 1
+  },
+  {
+    "id": "p005",
+    "type": "gap",
+    "text": "He ___ (not like) coffee.",
+    "solution": ["doesn't like", "does not like"],
+    "weight": 1
+  },
+  {
+    "id": "p006",
+    "type": "mcq",
+    "question": "Where ___ you from?",
+    "choices": ["do", "are", "did", "does"],
+    "answer": "are",
+    "weight": 1
+  },
+  {
+    "id": "p007",
+    "type": "mcq",
+    "question": "I have ___ apple and a sandwich.",
+    "choices": ["the", "a", "an", "-"],
+    "answer": "an",
+    "weight": 1
+  },
+  {
+    "id": "p008",
+    "type": "gap",
+    "text": "My brother ___ (be) at home now.",
+    "solution": ["is"],
+    "weight": 1
+  },
+  {
+    "id": "p009",
+    "type": "mcq",
+    "question": "She is good ___ math.",
+    "choices": ["at", "in", "on", "for"],
+    "answer": "at",
+    "weight": 1
+  },
+  {
+    "id": "p010",
+    "type": "mcq",
+    "question": "We go to the gym ___ weekends.",
+    "choices": ["in", "at", "on", "for"],
+    "answer": "on",
+    "weight": 1
+  },
+  {
+    "id": "p011",
+    "type": "gap",
+    "text": "Please ___ (open) the window.",
+    "solution": ["open"],
+    "weight": 1
+  },
+  {
+    "id": "p012",
+    "type": "mcq",
+    "question": "I ___ to the dentist last week.",
+    "choices": ["go", "went", "have gone", "was go"],
+    "answer": "went",
+    "weight": 1
+  },
+  {
+    "id": "p013",
+    "type": "mcq",
+    "question": "He ___ TV when I called him.",
+    "choices": ["watched", "was watching", "has watched", "is watching"],
+    "answer": "was watching",
+    "weight": 1
+  },
+  {
+    "id": "p014",
+    "type": "gap",
+    "text": "She ___ (work) in this team since 2019.",
+    "solution": ["has been working", "has  been  working"],
+    "weight": 1
+  },
+  {
+    "id": "p015",
+    "type": "mcq",
+    "question": "I have lived in this city ___ five years.",
+    "choices": ["for", "since", "from", "during"],
+    "answer": "for",
+    "weight": 1
+  },
+  {
+    "id": "p016",
+    "type": "mcq",
+    "question": "Choose the best option: I’m interested ___ contemporary photography.",
+    "choices": ["on", "in", "at", "for"],
+    "answer": "in",
+    "weight": 1
+  },
+  {
+    "id": "p017",
+    "type": "gap",
+    "text": "We ___ (already/finish) the report.",
+    "solution": ["have already finished", "already have finished"],
+    "weight": 1
+  },
+  {
+    "id": "p018",
+    "type": "mcq",
+    "question": "He didn’t come ___ the bad weather.",
+    "choices": ["because", "because of", "so", "although"],
+    "answer": "because of",
+    "weight": 1
+  },
+  {
+    "id": "p019",
+    "type": "mcq",
+    "question": "Let’s meet ___ the entrance at 7.",
+    "choices": ["in", "at", "on", "by"],
+    "answer": "at",
+    "weight": 1
+  },
+  {
+    "id": "p020",
+    "type": "gap",
+    "text": "I haven’t seen her ___ last summer.",
+    "solution": ["since"],
+    "weight": 1
+  },
+  {
+    "id": "p021",
+    "type": "mcq",
+    "question": "If it ___ tomorrow, we’ll stay at home.",
+    "choices": ["rains", "will rain", "rain", "is raining"],
+    "answer": "rains",
+    "weight": 1
+  },
+  {
+    "id": "p022",
+    "type": "gap",
+    "text": "This soup tastes ___ (delicious/deliciously).",
+    "solution": ["delicious"],
+    "weight": 1
+  },
+  {
+    "id": "p023",
+    "type": "mcq",
+    "question": "I’m looking forward ___ you next month.",
+    "choices": ["to see", "to seeing", "seeing", "see"],
+    "answer": "to seeing",
+    "weight": 1
+  },
+  {
+    "id": "p024",
+    "type": "mcq",
+    "question": "We arrived ___ the airport late.",
+    "choices": ["to", "at", "in", "into"],
+    "answer": "at",
+    "weight": 1
+  },
+  {
+    "id": "p025",
+    "type": "gap",
+    "text": "Could you tell me where the library ___ (be)?",
+    "solution": ["is"],
+    "weight": 1
+  },
+  {
+    "id": "p026",
+    "type": "mcq",
+    "question": "I prefer tea ___ coffee.",
+    "choices": ["than", "to", "over", "from"],
+    "answer": "to",
+    "weight": 1
+  },
+  {
+    "id": "p027",
+    "type": "gap",
+    "text": "He said he ___ (call) me later.",
+    "solution": ["would call"],
+    "weight": 1
+  },
+  {
+    "id": "p028",
+    "type": "mcq",
+    "question": "They have been married ___ 2012.",
+    "choices": ["since", "for", "from", "in"],
+    "answer": "since",
+    "weight": 1
+  },
+  {
+    "id": "p029",
+    "type": "mcq",
+    "question": "She managed ___ the exam on her first try.",
+    "choices": ["to pass", "pass", "passing", "to passing"],
+    "answer": "to pass",
+    "weight": 1
+  },
+  {
+    "id": "p030",
+    "type": "gap",
+    "text": "By the time we arrived, the film ___ (start).",
+    "solution": ["had started"],
+    "weight": 1
+  },
+  {
+    "id": "p031",
+    "type": "mcq",
+    "question": "If I ___ more time, I would travel more.",
+    "choices": ["have", "had", "would have", "will have"],
+    "answer": "had",
+    "weight": 1
+  },
+  {
+    "id": "p032",
+    "type": "gap",
+    "text": "Neither my brother nor my parents ___ (know) about it.",
+    "solution": ["know"],
+    "weight": 1
+  },
+  {
+    "id": "p033",
+    "type": "mcq",
+    "question": "She suggested ___ to the countryside at the weekend.",
+    "choices": ["to go", "going", "go", "that we go"],
+    "answer": "going",
+    "weight": 1
+  },
+  {
+    "id": "p034",
+    "type": "mcq",
+    "question": "He’s late again, ___ is unusual for him.",
+    "choices": ["what", "which", "that", "who"],
+    "answer": "which",
+    "weight": 1
+  },
+  {
+    "id": "p035",
+    "type": "gap",
+    "text": "If only I ___ (know) about the meeting earlier!",
+    "solution": ["had known"],
+    "weight": 1
+  },
+  {
+    "id": "p036",
+    "type": "mcq",
+    "question": "I remember ___ him at the conference last year.",
+    "choices": ["to meet", "meeting", "met", "to meeting"],
+    "answer": "meeting",
+    "weight": 1
+  },
+  {
+    "id": "p037",
+    "type": "gap",
+    "text": "Hardly ___ (we/arrive) when it started to rain.",
+    "solution": ["had we arrived"],
+    "weight": 1
+  },
+  {
+    "id": "p038",
+    "type": "mcq",
+    "question": "He promised to call, but he ___.",
+    "choices": ["hasn't", "didn't", "hadn't", "won't"],
+    "answer": "didn't",
+    "weight": 1
+  },
+  {
+    "id": "p039",
+    "type": "mcq",
+    "question": "Choose the correct preposition: He’s afraid ___ making mistakes.",
+    "choices": ["to", "of", "for", "about"],
+    "answer": "of",
+    "weight": 1
+  },
+  {
+    "id": "p040",
+    "type": "gap",
+    "text": "It’s high time we ___ (leave).",
+    "solution": ["left"],
+    "weight": 1
+  },
+  {
+    "id": "p041",
+    "type": "mcq",
+    "question": "The book was so boring that I ___ finish it.",
+    "choices": ["couldn't", "weren't", "didn't can", "mustn't"],
+    "answer": "couldn't",
+    "weight": 1
+  },
+  {
+    "id": "p042",
+    "type": "gap",
+    "text": "I’d rather you ___ (not smoke) here.",
+    "solution": ["didn't smoke", "did not smoke"],
+    "weight": 1
+  },
+  {
+    "id": "p043",
+    "type": "mcq",
+    "question": "My train leaves ___ 6:45 in the morning.",
+    "choices": ["in", "at", "on", "by"],
+    "answer": "at",
+    "weight": 1
+  },
+  {
+    "id": "p044",
+    "type": "mcq",
+    "question": "He apologized ___ being late.",
+    "choices": ["for", "about", "of", "to"],
+    "answer": "for",
+    "weight": 1
+  },
+  {
+    "id": "p045",
+    "type": "gap",
+    "text": "We couldn’t go out because it ___ (rain) all day.",
+    "solution": ["had been raining"],
+    "weight": 1
+  },
+  {
+    "id": "p046",
+    "type": "mcq",
+    "question": "They insisted that he ___ the fine immediately.",
+    "choices": ["paid", "pay", "pays", "to pay"],
+    "answer": "pay",
+    "weight": 1
+  },
+  {
+    "id": "p047",
+    "type": "gap",
+    "text": "He is ___ honest person; you can trust him.",
+    "solution": ["an"],
+    "weight": 1
+  },
+  {
+    "id": "p048",
+    "type": "mcq",
+    "question": "I’m used ___ up early.",
+    "choices": ["to get", "to getting", "getting", "get"],
+    "answer": "to getting",
+    "weight": 1
+  },
+  {
+    "id": "p049",
+    "type": "gap",
+    "text": "Neither of the answers ___ (be) correct.",
+    "solution": ["is"],
+    "weight": 1
+  },
+  {
+    "id": "p050",
+    "type": "mcq",
+    "question": "He speaks English ___ than his sister.",
+    "choices": ["more better", "better", "best", "good"],
+    "answer": "better",
+    "weight": 1
+  },
+  {
+    "id": "p051",
+    "type": "mcq",
+    "question": "Actually, I don’t ___ your point.",
+    "choices": ["understand", "translate", "control", "learn"],
+    "answer": "understand",
+    "weight": 1
+  },
+  {
+    "id": "p052",
+    "type": "gap",
+    "text": "We were shocked by how ___ (quick) the weather changed.",
+    "solution": ["quickly"],
+    "weight": 1
+  },
+  {
+    "id": "p053",
+    "type": "mcq",
+    "question": "He borrowed a book from the ___ and forgot to return it.",
+    "choices": ["library", "magazine", "biblioteca", "shop"],
+    "answer": "library",
+    "weight": 1
+  },
+  {
+    "id": "p054",
+    "type": "gap",
+    "text": "She ___ (never/try) sushi before that trip.",
+    "solution": ["had never tried"],
+    "weight": 1
+  },
+  {
+    "id": "p055",
+    "type": "mcq",
+    "question": "Choose the best option: He arrived ___ the station just in time.",
+    "choices": ["to", "at", "in", "on"],
+    "answer": "at",
+    "weight": 1
+  },
+  {
+    "id": "p056",
+    "type": "mcq",
+    "question": "If you study hard, you ___ the exam.",
+    "choices": ["will pass", "pass", "passed", "would pass"],
+    "answer": "will pass",
+    "weight": 1
+  },
+  {
+    "id": "p057",
+    "type": "gap",
+    "text": "Not only ___ (she/win) the race, but she also set a record.",
+    "solution": ["did she win"],
+    "weight": 1
+  },
+  {
+    "id": "p058",
+    "type": "mcq",
+    "question": "He didn’t go to the party, and ___ did I.",
+    "choices": ["neither", "either", "so", "nor"],
+    "answer": "neither",
+    "weight": 1
+  },
+  {
+    "id": "p059",
+    "type": "gap",
+    "text": "By next May, I ___ (work) here for ten years.",
+    "solution": ["will have worked", "'ll have worked"],
+    "weight": 1
+  },
+  {
+    "id": "p060",
+    "type": "mcq",
+    "question": "They said the meeting had been ___ to Friday.",
+    "choices": ["moved", "postponed", "delayed", "transferred"],
+    "answer": "postponed",
+    "weight": 1
+  },
+  {
+    "id": "p061",
+    "type": "gap",
+    "text": "The manager demanded that we ___ (be) on time.",
+    "solution": ["be"],
+    "weight": 1
+  },
+  {
+    "id": "p062",
+    "type": "mcq",
+    "question": "He was accused ___ the rules.",
+    "choices": ["of breaking", "in breaking", "to break", "for breaking"],
+    "answer": "of breaking",
+    "weight": 1
+  },
+  {
+    "id": "p063",
+    "type": "mcq",
+    "question": "Choose the correct form: If he ___ earlier, we would have caught the bus.",
+    "choices": ["left", "had left", "would leave", "was leaving"],
+    "answer": "had left",
+    "weight": 1
+  },
+  {
+    "id": "p064",
+    "type": "gap",
+    "text": "Little ___ (we/expect) that the plan would fail.",
+    "solution": ["did we expect"],
+    "weight": 1
+  },
+  {
+    "id": "p065",
+    "type": "mcq",
+    "question": "She was the only one ___ the problem correctly.",
+    "choices": ["to solve", "solving", "solved", "who solve"],
+    "answer": "to solve",
+    "weight": 1
+  },
+  {
+    "id": "p066",
+    "type": "gap",
+    "text": "No sooner ___ (we/finish) than the lights went out.",
+    "solution": ["had we finished"],
+    "weight": 1
+  },
+  {
+    "id": "p067",
+    "type": "mcq",
+    "question": "We need someone with a strong command ___ English.",
+    "choices": ["of", "in", "on", "for"],
+    "answer": "of",
+    "weight": 1
+  },
+  {
+    "id": "p068",
+    "type": "gap",
+    "text": "He would rather ___ (stay) at home tonight.",
+    "solution": ["stay"],
+    "weight": 1
+  },
+  {
+    "id": "p069",
+    "type": "mcq",
+    "question": "He arrived late ___ the traffic was terrible.",
+    "choices": ["because", "because of", "although", "despite"],
+    "answer": "because",
+    "weight": 1
+  },
+  {
+    "id": "p070",
+    "type": "mcq",
+    "question": "They congratulated her ___ her promotion.",
+    "choices": ["with", "for", "on", "about"],
+    "answer": "on",
+    "weight": 1
+  },
+  {
+    "id": "p071",
+    "type": "reading_mcq",
+    "passage": "Marina had worked as a customer support agent for four years, answering the same types of questions every day. When a small software company invited her for an interview, she was excited but cautious. The role promised more responsibility and room to learn, but the team was distributed across time zones. In the final interview, one engineer mentioned that they often changed plans overnight. Marina could adapt, but she worried about unclear expectations and the lack of direct mentorship in a remote setup.",
+    "question": "Why did Marina hesitate to accept the offer?",
+    "choices": [
+      "The salary was too low",
+      "The commute was long",
+      "Unclear expectations in a remote team",
+      "She disliked the manager"
+    ],
+    "answer": "Unclear expectations in a remote team",
+    "weight": 1
+  },
+  {
+    "id": "p072",
+    "type": "reading_mcq",
+    "passage": "Oleg opened a small coffee cart near a busy metro station. The first week, he sold out by noon, thrilled by the demand. The next week, construction began on the square, redirecting foot traffic through a side street. He kept the prices the same and improved the coffee, but sales dropped sharply. After checking his receipts, Oleg realized his loyal customers still came; it was the random passersby he had lost.",
+    "question": "What mainly caused the drop in sales?",
+    "choices": [
+      "Higher prices",
+      "Worse coffee",
+      "Less random foot traffic",
+      "Fewer loyal customers"
+    ],
+    "answer": "Less random foot traffic",
+    "weight": 1
+  },
+  {
+    "id": "p073",
+    "type": "reading_mcq",
+    "passage": "Anya joined a language club that met every Thursday. Members practiced conversation on everyday topics and shared vocabulary lists. The moderator encouraged them to keep personal glossaries. After a month, Anya spoke more fluently but still paused when describing abstract ideas. She noticed that others who reviewed collocations regularly hesitated less when explaining opinions and complex feelings.",
+    "question": "What helped speakers hesitate less?",
+    "choices": [
+      "Meeting on Thursdays",
+      "Memorizing grammar tables",
+      "Reviewing collocations",
+      "Skipping vocabulary lists"
+    ],
+    "answer": "Reviewing collocations",
+    "weight": 1
+  },
+  {
+    "id": "p074",
+    "type": "reading_mcq",
+    "passage": "During the internship, Pavel rotated between three departments. In the logistics team, he tracked shipments and wrote brief updates. In marketing, he drafted short posts that his mentor edited heavily. In support, he handled simple tickets on his own. When offered a permanent role, Pavel chose logistics, saying that while marketing was creative, he preferred the tasks where his work was trusted without constant revisions.",
+    "question": "Why did Pavel choose logistics?",
+    "choices": [
+      "Better salary",
+      "Less overtime",
+      "More trusted autonomy",
+      "Shorter commute"
+    ],
+    "answer": "More trusted autonomy",
+    "weight": 1
+  },
+  {
+    "id": "p075",
+    "type": "reading_mcq",
+    "passage": "Irina planned a weekend hike with friends. The forecast promised sun, so she packed lightly. On the trail, thin clouds gathered, and a cool wind rose. One friend suggested turning back, but Irina checked the map and pointed out shelters spaced along the route. They continued, reaching the lake just before a brief shower. They ate quickly under a roof and laughed that the view was brighter after the rain.",
+    "question": "Why did the group continue the hike?",
+    "choices": [
+      "They had heavy rain gear",
+      "Shelters were available on the route",
+      "They wanted to beat another group",
+      "The forecast turned stormy"
+    ],
+    "answer": "Shelters were available on the route",
+    "weight": 1
+  },
+  {
+    "id": "p076",
+    "type": "reading_mcq",
+    "passage": "Nikolai’s bakery introduced a new rye loaf. Early customers praised the taste but complained about the crumbly slices. He tested different baking times and adjusted the hydration slightly. After he posted a short video showing how to cut the bread once it cooled, returns stopped. Reviews mentioned the clearer instructions more than the recipe changes.",
+    "question": "What most improved customer satisfaction?",
+    "choices": [
+      "Lower price",
+      "Recipe change only",
+      "Clear slicing instructions",
+      "Free samples"
+    ],
+    "answer": "Clear slicing instructions",
+    "weight": 1
+  },
+  {
+    "id": "p077",
+    "type": "mcq",
+    "question": "Choose the best option: I am used ___ in English at work.",
+    "choices": ["to speak", "speaking", "to speaking", "speak"],
+    "answer": "to speaking",
+    "weight": 1
+  },
+  {
+    "id": "p078",
+    "type": "gap",
+    "text": "No matter how hard he tried, he couldn’t make himself ___ (understand).",
+    "solution": ["understood"],
+    "weight": 1
+  },
+  {
+    "id": "p079",
+    "type": "mcq",
+    "question": "I’d rather you ___ earlier next time.",
+    "choices": ["arrive", "arrived", "would arrive", "had arrived"],
+    "answer": "arrived",
+    "weight": 1
+  },
+  {
+    "id": "p080",
+    "type": "gap",
+    "text": "Scarcely ___ (I/close) my eyes when the alarm rang.",
+    "solution": ["had I closed"],
+    "weight": 1
+  },
+  {
+    "id": "p081",
+    "type": "mcq",
+    "question": "The proposal, ___ details we discussed yesterday, was approved.",
+    "choices": ["which", "that", "whose", "what"],
+    "answer": "whose",
+    "weight": 1
+  },
+  {
+    "id": "p082",
+    "type": "gap",
+    "text": "He would have helped you if he ___ (know).",
+    "solution": ["had known"],
+    "weight": 1
+  },
+  {
+    "id": "p083",
+    "type": "mcq",
+    "question": "Hardly had we started when the system ___.",
+    "choices": ["crashed", "had crashed", "was crashing", "has crashed"],
+    "answer": "crashed",
+    "weight": 1
+  },
+  {
+    "id": "p084",
+    "type": "gap",
+    "text": "Few students ___ (be) willing to present today.",
+    "solution": ["are"],
+    "weight": 1
+  },
+  {
+    "id": "p085",
+    "type": "mcq",
+    "question": "He denied ___ the document.",
+    "choices": ["to sign", "being sign", "sign", "signing"],
+    "answer": "signing",
+    "weight": 1
+  },
+  {
+    "id": "p086",
+    "type": "gap",
+    "text": "Were I ___ (be) you, I would reconsider.",
+    "solution": ["were"],
+    "weight": 1
+  },
+  {
+    "id": "p087",
+    "type": "mcq",
+    "question": "Not until later ___ the mistake.",
+    "choices": [
+      "we noticed",
+      "did we notice",
+      "we had noticed",
+      "had we noticed"
+    ],
+    "answer": "did we notice",
+    "weight": 1
+  },
+  {
+    "id": "p088",
+    "type": "gap",
+    "text": "The results turned out ___ (surprising) positive.",
+    "solution": ["surprisingly"],
+    "weight": 1
+  },
+  {
+    "id": "p089",
+    "type": "mcq",
+    "question": "He has little experience, ___ he is very confident.",
+    "choices": ["however", "despite", "although", "in spite"],
+    "answer": "however",
+    "weight": 1
+  },
+  {
+    "id": "p090",
+    "type": "gap",
+    "text": "Had you ___ (tell) me, I would have helped.",
+    "solution": ["told"],
+    "weight": 1
+  },
+  {
+    "id": "p091",
+    "type": "mcq",
+    "question": "The committee demanded that the report ___ by Monday.",
+    "choices": [
+      "is submitted",
+      "be submitted",
+      "was submitted",
+      "to be submitted"
+    ],
+    "answer": "be submitted",
+    "weight": 2
+  },
+  {
+    "id": "p092",
+    "type": "gap",
+    "text": "Only after the data ___ (analyze) did we make a decision.",
+    "solution": ["had been analyzed"],
+    "weight": 2
+  },
+  {
+    "id": "p093",
+    "type": "mcq",
+    "question": "The more you practice, the ___ mistakes you make.",
+    "choices": ["few", "fewer", "less", "least"],
+    "answer": "fewer",
+    "weight": 2
+  },
+  {
+    "id": "p094",
+    "type": "gap",
+    "text": "No sooner ___ (he/arrive) than he was asked to present.",
+    "solution": ["had he arrived"],
+    "weight": 2
+  },
+  {
+    "id": "p095",
+    "type": "mcq",
+    "question": "Under no circumstances ___ the device be turned off.",
+    "choices": [
+      "the device must",
+      "must the device",
+      "should turn",
+      "the device should"
+    ],
+    "answer": "must the device",
+    "weight": 2
+  },
+  {
+    "id": "p096",
+    "type": "gap",
+    "text": "Little ___ (anyone/realize) how complex the issue was.",
+    "solution": ["did anyone realize"],
+    "weight": 2
+  },
+  {
+    "id": "p097",
+    "type": "mcq",
+    "question": "Were it not for her guidance, we ___ lost the client.",
+    "choices": ["might have", "would", "had", "have"],
+    "answer": "might have",
+    "weight": 2
+  },
+  {
+    "id": "p098",
+    "type": "gap",
+    "text": "Seldom ___ (we/see) such a coherent argument.",
+    "solution": ["do we see"],
+    "weight": 2
+  },
+  {
+    "id": "p099",
+    "type": "mcq",
+    "question": "Hardly anywhere ___ so quickly as in tech.",
+    "choices": [
+      "things change",
+      "do things change",
+      "are things changing",
+      "things are changed"
+    ],
+    "answer": "do things change",
+    "weight": 2
+  },
+  {
+    "id": "p100",
+    "type": "gap",
+    "text": "Be it rain or shine, the event will ___ (take place).",
+    "solution": ["take place"],
+    "weight": 2
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "v01",
+    "type": "mcq",
+    "question": "magazine",
+    "choices": ["журнал", "магазин", "магистраль", "магнит"],
+    "answerIndex": 0,
+    "weight": 1
+  },
+  {
+    "id": "v02",
+    "type": "mcq",
+    "question": "library",
+    "choices": ["библиотека", "книжный магазин", "лаборатория", "лицей"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v03",
+    "type": "mcq",
+    "question": "actually",
+    "choices": [
+      "на самом деле",
+      "фактически позже",
+      "аккуратно",
+      "в конечном итоге"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "v04",
+    "type": "mcq",
+    "question": "eventually",
+    "choices": ["в конечном итоге", "событийно", "на самом деле", "случайно"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v05",
+    "type": "mcq",
+    "question": "sympathy",
+    "choices": ["сочувствие", "симпатия", "симметрия", "символика"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v06",
+    "type": "mcq",
+    "question": "artist",
+    "choices": ["художник/артист", "артелль", "артикулировать", "инженер"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v07",
+    "type": "mcq",
+    "question": "factory",
+    "choices": ["завод", "фактура", "факультет", "магазин"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v08",
+    "type": "mcq",
+    "question": "accurate",
+    "choices": ["точный", "аккуратный", "приблизительный", "актуальный"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v09",
+    "type": "mcq",
+    "question": "fabric",
+    "choices": ["ткань", "фабрика", "фабрикация", "фактура"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v10",
+    "type": "mcq",
+    "question": "recipe",
+    "choices": ["рецепт", "рецепция", "рецептор", "рецензия"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v11",
+    "type": "mcq",
+    "question": "sensible",
+    "choices": ["разумный", "чувствительный", "сенсационный", "осмысленный"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v12",
+    "type": "mcq",
+    "question": "sensitive",
+    "choices": [
+      "чувствительный",
+      "разумный",
+      "сенситивный (мед.)",
+      "сенсационный"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "v13",
+    "type": "mcq",
+    "question": "pretend",
+    "choices": [
+      "притворяться",
+      "претендовать",
+      "предотвращать",
+      "предпочитать"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "v14",
+    "type": "mcq",
+    "question": "eventual",
+    "choices": ["итоговый", "событийный", "случайный", "актуальный"],
+    "answerIndex": 0
+  },
+  {
+    "id": "v15",
+    "type": "mcq",
+    "question": "actual",
+    "choices": [
+      "реальный",
+      "аккуратный",
+      "актуальный",
+      "фактический (в будущем)"
+    ],
+    "answerIndex": 0
+  }
+]

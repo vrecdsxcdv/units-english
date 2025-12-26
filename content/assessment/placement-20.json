@@ -1,0 +1,309 @@
+[
+  {
+    "id": "grammar-a1-1",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "A1",
+    "question": "She ___ a student.",
+    "choices": ["are", "is", "am", "be"],
+    "answer": "is",
+    "weight": 2
+  },
+  {
+    "id": "grammar-a1-2",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "A1",
+    "question": "They ___ from Spain.",
+    "choices": ["is", "am", "are", "be"],
+    "answer": "are",
+    "weight": 2
+  },
+  {
+    "id": "grammar-a2-1",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "A2",
+    "question": "I've worked here ___ two years.",
+    "choices": ["since", "for", "during", "from"],
+    "answer": "for",
+    "weight": 3
+  },
+  {
+    "id": "grammar-a2-2",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "A2",
+    "question": "She ___ to the gym every morning.",
+    "choices": ["go", "goes", "going", "gone"],
+    "answer": "goes",
+    "weight": 3
+  },
+  {
+    "id": "grammar-b1-1",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "B1",
+    "question": "If I ___ enough money, I'd buy a car.",
+    "choices": ["have", "had", "would have", "will have"],
+    "answer": "had",
+    "weight": 4
+  },
+  {
+    "id": "grammar-b1-2",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "B1",
+    "question": "I wish I ___ speak French fluently.",
+    "choices": ["can", "could", "will", "would"],
+    "answer": "could",
+    "weight": 4
+  },
+  {
+    "id": "grammar-b1-3",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "B1",
+    "question": "She asked me where I ___.",
+    "choices": ["live", "lived", "living", "lives"],
+    "answer": "lived",
+    "weight": 4
+  },
+  {
+    "id": "grammar-b2-1",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "B2",
+    "question": "The report ___ by the time we arrived.",
+    "choices": ["had finished", "had been finished", "was finished", "has finished"],
+    "answer": "had been finished",
+    "weight": 5
+  },
+  {
+    "id": "grammar-b2-2",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "B2",
+    "question": "Not only ___ the exam, but he also got the highest score.",
+    "choices": ["he passed", "did he pass", "he did pass", "passed he"],
+    "answer": "did he pass",
+    "weight": 5
+  },
+  {
+    "id": "grammar-b2-3",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "B2",
+    "question": "Had I known about the meeting, I ___ attended.",
+    "choices": ["would", "would have", "will have", "had"],
+    "answer": "would have",
+    "weight": 5
+  },
+  {
+    "id": "grammar-c1-1",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "C1",
+    "question": "She spoke as though nothing ___ happened.",
+    "choices": ["has", "had", "would", "did"],
+    "answer": "had",
+    "weight": 6
+  },
+  {
+    "id": "grammar-c1-2",
+    "type": "mcq",
+    "category": "grammar",
+    "level": "C1",
+    "question": "Seldom ___ such a brilliant performance.",
+    "choices": ["I have seen", "have I seen", "I saw", "did I saw"],
+    "answer": "have I seen",
+    "weight": 6
+  },
+  {
+    "id": "vocab-a2-1",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "A2",
+    "question": "I'm looking ___ my keys. Have you seen them?",
+    "choices": ["for", "after", "at", "up"],
+    "answer": "for",
+    "weight": 3
+  },
+  {
+    "id": "vocab-a2-2",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "A2",
+    "question": "Can you turn ___ the lights? It's too dark.",
+    "choices": ["on", "off", "up", "down"],
+    "answer": "on",
+    "weight": 3
+  },
+  {
+    "id": "vocab-b1-1",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "B1",
+    "question": "The company decided to ___ the project due to budget issues.",
+    "choices": ["give up", "take off", "set out", "carry on"],
+    "answer": "give up",
+    "weight": 4
+  },
+  {
+    "id": "vocab-b1-2",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "B1",
+    "question": "We need to ___ a solution to this problem.",
+    "choices": ["come up with", "get along with", "look forward to", "run out of"],
+    "answer": "come up with",
+    "weight": 4
+  },
+  {
+    "id": "vocab-b2-1",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "B2",
+    "question": "This issue needs to be ___ carefully before we proceed.",
+    "choices": ["handled", "dealt", "solved", "managed"],
+    "answer": "handled",
+    "weight": 5
+  },
+  {
+    "id": "vocab-b2-2",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "B2",
+    "question": "The negotiations reached a ___ when neither side would compromise.",
+    "choices": ["deadlock", "deadline", "breakdown", "breakthrough"],
+    "answer": "deadlock",
+    "weight": 5
+  },
+  {
+    "id": "vocab-c1-1",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "C1",
+    "question": "His explanation lacked ___ and clarity.",
+    "choices": ["precise", "precision", "precisely", "preciseness"],
+    "answer": "precision",
+    "weight": 6
+  },
+  {
+    "id": "vocab-c1-2",
+    "type": "mcq",
+    "category": "vocabulary",
+    "level": "C1",
+    "question": "The evidence was entirely ___, leaving the jury with no clear conclusion.",
+    "choices": ["circumstantial", "circumstance", "circumstances", "circumstantially"],
+    "answer": "circumstantial",
+    "weight": 6
+  },
+  {
+    "id": "reading-1-q1",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "A2-B1",
+    "passage": "Last year, Emma decided to move abroad for work. She had always dreamed of living in another country, and when her company offered her a position in Amsterdam, she didn't hesitate. The first few months were challenging — she missed her family and had to learn new customs. But now, after a year, she feels at home. She has made good friends, learned some Dutch, and discovered a passion for cycling. Emma says that taking this opportunity was the best decision of her life.",
+    "question": "What is the main reason Emma moved abroad?",
+    "choices": ["To study at university", "For a work opportunity", "To be closer to family", "To learn Dutch"],
+    "answer": "For a work opportunity",
+    "weight": 4
+  },
+  {
+    "id": "reading-1-q2",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "A2-B1",
+    "passage": "Last year, Emma decided to move abroad for work. She had always dreamed of living in another country, and when her company offered her a position in Amsterdam, she didn't hesitate. The first few months were challenging — she missed her family and had to learn new customs. But now, after a year, she feels at home. She has made good friends, learned some Dutch, and discovered a passion for cycling. Emma says that taking this opportunity was the best decision of her life.",
+    "question": "How did Emma feel during the first few months?",
+    "choices": ["Excited and happy", "It was difficult for her", "She wanted to go home immediately", "She loved everything"],
+    "answer": "It was difficult for her",
+    "weight": 4
+  },
+  {
+    "id": "reading-1-q3",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "A2-B1",
+    "passage": "Last year, Emma decided to move abroad for work. She had always dreamed of living in another country, and when her company offered her a position in Amsterdam, she didn't hesitate. The first few months were challenging — she missed her family and had to learn new customs. But now, after a year, she feels at home. She has made good friends, learned some Dutch, and discovered a passion for cycling. Emma says that taking this opportunity was the best decision of her life.",
+    "question": "What new hobby did Emma develop in Amsterdam?",
+    "choices": ["Swimming", "Painting", "Cycling", "Cooking"],
+    "answer": "Cycling",
+    "weight": 4
+  },
+  {
+    "id": "reading-2-q1",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "B2-C1",
+    "passage": "The rise of artificial intelligence in education has sparked intense debate among educators and policymakers. Proponents argue that AI-powered tools can personalize learning experiences, identify knowledge gaps, and provide immediate feedback to students — tasks that would be impossible for a single teacher managing a classroom of thirty students. However, critics raise concerns about data privacy, the potential for algorithmic bias, and the risk of diminishing the fundamentally human aspects of education.\n\nRecent studies have shown mixed results. While some schools report improved test scores after implementing AI tutoring systems, others have found that students become overly dependent on technology and struggle with independent problem-solving. The question is not whether AI will transform education — it already is — but rather how we can harness its benefits while mitigating its risks.\n\nAs one researcher noted, 'Technology should amplify good teaching, not replace it.' This perspective suggests that the most effective approach may be a hybrid model where AI handles routine tasks like grading and progress tracking, freeing teachers to focus on mentorship, creativity, and the social-emotional development that machines cannot replicate.",
+    "question": "What is the main argument of AI proponents mentioned in the passage?",
+    "choices": ["AI can replace teachers entirely", "AI enables personalized learning at scale", "AI is cheaper than hiring teachers", "AI makes education more entertaining"],
+    "answer": "AI enables personalized learning at scale",
+    "weight": 5
+  },
+  {
+    "id": "reading-2-q2",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "B2-C1",
+    "passage": "The rise of artificial intelligence in education has sparked intense debate among educators and policymakers. Proponents argue that AI-powered tools can personalize learning experiences, identify knowledge gaps, and provide immediate feedback to students — tasks that would be impossible for a single teacher managing a classroom of thirty students. However, critics raise concerns about data privacy, the potential for algorithmic bias, and the risk of diminishing the fundamentally human aspects of education.\n\nRecent studies have shown mixed results. While some schools report improved test scores after implementing AI tutoring systems, others have found that students become overly dependent on technology and struggle with independent problem-solving. The question is not whether AI will transform education — it already is — but rather how we can harness its benefits while mitigating its risks.\n\nAs one researcher noted, 'Technology should amplify good teaching, not replace it.' This perspective suggests that the most effective approach may be a hybrid model where AI handles routine tasks like grading and progress tracking, freeing teachers to focus on mentorship, creativity, and the social-emotional development that machines cannot replicate.",
+    "question": "According to the passage, what negative effect has been observed in some schools using AI?",
+    "choices": ["Teachers lost their jobs", "Test scores decreased dramatically", "Students became too dependent on technology", "Parents complained about the cost"],
+    "answer": "Students became too dependent on technology",
+    "weight": 5
+  },
+  {
+    "id": "reading-2-q3",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "B2-C1",
+    "passage": "The rise of artificial intelligence in education has sparked intense debate among educators and policymakers. Proponents argue that AI-powered tools can personalize learning experiences, identify knowledge gaps, and provide immediate feedback to students — tasks that would be impossible for a single teacher managing a classroom of thirty students. However, critics raise concerns about data privacy, the potential for algorithmic bias, and the risk of diminishing the fundamentally human aspects of education.\n\nRecent studies have shown mixed results. While some schools report improved test scores after implementing AI tutoring systems, others have found that students become overly dependent on technology and struggle with independent problem-solving. The question is not whether AI will transform education — it already is — but rather how we can harness its benefits while mitigating its risks.\n\nAs one researcher noted, 'Technology should amplify good teaching, not replace it.' This perspective suggests that the most effective approach may be a hybrid model where AI handles routine tasks like grading and progress tracking, freeing teachers to focus on mentorship, creativity, and the social-emotional development that machines cannot replicate.",
+    "question": "What does the phrase 'amplify good teaching' suggest about the researcher's view?",
+    "choices": ["AI should make teaching louder", "AI should enhance, not substitute, human teachers", "AI should be used only in large classrooms", "AI should focus on test preparation"],
+    "answer": "AI should enhance, not substitute, human teachers",
+    "weight": 5
+  },
+  {
+    "id": "reading-2-q4",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "B2-C1",
+    "passage": "The rise of artificial intelligence in education has sparked intense debate among educators and policymakers. Proponents argue that AI-powered tools can personalize learning experiences, identify knowledge gaps, and provide immediate feedback to students — tasks that would be impossible for a single teacher managing a classroom of thirty students. However, critics raise concerns about data privacy, the potential for algorithmic bias, and the risk of diminishing the fundamentally human aspects of education.\n\nRecent studies have shown mixed results. While some schools report improved test scores after implementing AI tutoring systems, others have found that students become overly dependent on technology and struggle with independent problem-solving. The question is not whether AI will transform education — it already is — but rather how we can harness its benefits while mitigating its risks.\n\nAs one researcher noted, 'Technology should amplify good teaching, not replace it.' This perspective suggests that the most effective approach may be a hybrid model where AI handles routine tasks like grading and progress tracking, freeing teachers to focus on mentorship, creativity, and the social-emotional development that machines cannot replicate.",
+    "question": "What can be inferred about the author's overall stance on AI in education?",
+    "choices": ["Completely against using AI", "Believes AI should replace all teachers", "Supports a balanced, hybrid approach", "Thinks the debate is unnecessary"],
+    "answer": "Supports a balanced, hybrid approach",
+    "weight": 6
+  },
+  {
+    "id": "reading-2-q5",
+    "type": "reading_mcq",
+    "category": "reading",
+    "level": "B2-C1",
+    "passage": "The rise of artificial intelligence in education has sparked intense debate among educators and policymakers. Proponents argue that AI-powered tools can personalize learning experiences, identify knowledge gaps, and provide immediate feedback to students — tasks that would be impossible for a single teacher managing a classroom of thirty students. However, critics raise concerns about data privacy, the potential for algorithmic bias, and the risk of diminishing the fundamentally human aspects of education.\n\nRecent studies have shown mixed results. While some schools report improved test scores after implementing AI tutoring systems, others have found that students become overly dependent on technology and struggle with independent problem-solving. The question is not whether AI will transform education — it already is — but rather how we can harness its benefits while mitigating its risks.\n\nAs one researcher noted, 'Technology should amplify good teaching, not replace it.' This perspective suggests that the most effective approach may be a hybrid model where AI handles routine tasks like grading and progress tracking, freeing teachers to focus on mentorship, creativity, and the social-emotional development that machines cannot replicate.",
+    "question": "Which tasks does the passage suggest AI could handle in the hybrid model?",
+    "choices": ["Mentorship and creativity", "Social-emotional development", "Grading and progress tracking", "Curriculum design"],
+    "answer": "Grading and progress tracking",
+    "weight": 5
+  },
+  {
+    "id": "listening-matching-1",
+    "type": "listening_matching",
+    "category": "listening",
+    "level": "B1-B2",
+    "audioUrl": "/audio/placement/listening-matching.mp3",
+    "instruction": "You will hear five people talking about their hobbies and free-time activities.\nMatch each speaker (1–5) with the activity (A–F).\nOne activity is extra and you do not need to use it.\nYou will hear the recordings twice.",
+    "speakers": [1, 2, 3, 4, 5],
+    "options": [
+      { "label": "A", "text": "Playing a musical instrument" },
+      { "label": "B", "text": "Creating digital content" },
+      { "label": "C", "text": "Doing sports with friends" },
+      { "label": "D", "text": "Learning new languages" },
+      { "label": "E", "text": "Going to themed parties" },
+      { "label": "F", "text": "Drawing or painting" }
+    ],
+    "answer": { "1": "D", "2": "E", "3": "C", "4": "A", "5": "F" },
+    "weight": 20
+  }
+]

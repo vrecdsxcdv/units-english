@@ -1,0 +1,122 @@
+[
+  {
+    "id": "w01",
+    "type": "gap",
+    "base": "decide",
+    "prompt": "Noun",
+    "solution": ["decision"],
+    "weight": 1
+  },
+  {
+    "id": "w02",
+    "type": "gap",
+    "base": "happy",
+    "prompt": "Adverb",
+    "solution": ["happily"],
+    "weight": 1
+  },
+  {
+    "id": "w03",
+    "type": "gap",
+    "base": "possible",
+    "prompt": "Negative adjective",
+    "solution": ["impossible"],
+    "weight": 1
+  },
+  {
+    "id": "w04",
+    "type": "gap",
+    "base": "danger",
+    "prompt": "Adjective",
+    "solution": ["dangerous"],
+    "weight": 1
+  },
+  {
+    "id": "w05",
+    "type": "gap",
+    "base": "create",
+    "prompt": "Noun",
+    "solution": ["creation"],
+    "weight": 1
+  },
+  {
+    "id": "w06",
+    "type": "gap",
+    "base": "organise",
+    "prompt": "Noun (BrE/AmE)",
+    "solution": ["organisation", "organization"],
+    "weight": 1
+  },
+  {
+    "id": "w07",
+    "type": "gap",
+    "base": "travel",
+    "prompt": "Gerund (BrE/AmE)",
+    "solution": ["travelling", "traveling"],
+    "weight": 1
+  },
+  {
+    "id": "w08",
+    "type": "gap",
+    "base": "practice",
+    "prompt": "Verb (BrE/AmE)",
+    "solution": ["practise", "practice"],
+    "weight": 1
+  },
+  {
+    "id": "w09",
+    "type": "gap",
+    "base": "beauty",
+    "prompt": "Adjective",
+    "solution": ["beautiful"],
+    "weight": 1
+  },
+  {
+    "id": "w10",
+    "type": "gap",
+    "base": "comfort",
+    "prompt": "Adjective (negative)",
+    "solution": ["uncomfortable"],
+    "weight": 1
+  },
+  {
+    "id": "w11",
+    "type": "gap",
+    "base": "strength",
+    "prompt": "Verb",
+    "solution": ["strengthen"],
+    "weight": 1
+  },
+  {
+    "id": "w12",
+    "type": "gap",
+    "base": "wide",
+    "prompt": "Noun",
+    "solution": ["width"],
+    "weight": 1
+  },
+  {
+    "id": "w13",
+    "type": "gap",
+    "base": "approve",
+    "prompt": "Noun",
+    "solution": ["approval"],
+    "weight": 1
+  },
+  {
+    "id": "w14",
+    "type": "gap",
+    "base": "solve",
+    "prompt": "Noun",
+    "solution": ["solution"],
+    "weight": 1
+  },
+  {
+    "id": "w15",
+    "type": "gap",
+    "base": "success",
+    "prompt": "Adjective",
+    "solution": ["successful"],
+    "weight": 1
+  }
+]

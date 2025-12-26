@@ -1,0 +1,23 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /internal/
+
+# Disallow API routes
+Disallow: /api/
+
+# Allow search engines to crawl all public pages
+Allow: /
+Allow: /learn
+Allow: /assessment
+Allow: /blocks/
+Allow: /tutor
+Allow: /reviews
+Allow: /login
+Allow: /register
+
+# Sitemap
+Sitemap: https://english-learning.vercel.app/sitemap.xml

@@ -1,0 +1,229 @@
+[
+  {
+    "id": "g01",
+    "type": "mcq",
+    "question": "I ___ to London last year.",
+    "choices": ["have gone", "went", "was going", "had gone"],
+    "answerIndex": 1,
+    "weight": 1
+  },
+  {
+    "id": "g02",
+    "type": "mcq",
+    "question": "She ___ already finished her homework.",
+    "choices": ["has", "have", "did", "is"],
+    "answerIndex": 0,
+    "weight": 1
+  },
+  {
+    "id": "g03",
+    "type": "mcq",
+    "question": "They ___ TV when I called.",
+    "choices": ["watched", "were watching", "had watched", "have watched"],
+    "answerIndex": 1,
+    "weight": 1
+  },
+  {
+    "id": "g04",
+    "type": "mcq",
+    "question": "There ___ a book on the table.",
+    "choices": ["is", "are", "be", "been"],
+    "answerIndex": 0,
+    "weight": 1
+  },
+  {
+    "id": "g05",
+    "type": "mcq",
+    "question": "___ you like coffee?",
+    "choices": ["Do", "Does", "Did", "Are"],
+    "answerIndex": 0,
+    "weight": 1
+  },
+  {
+    "id": "g06",
+    "type": "mcq",
+    "question": "He ___ in Paris since 2018.",
+    "choices": ["lives", "has lived", "is living", "lived"],
+    "answerIndex": 1,
+    "weight": 1
+  },
+  {
+    "id": "g07",
+    "type": "mcq",
+    "question": "I'll be here ___ Friday.",
+    "choices": ["by", "until", "for", "since"],
+    "answerIndex": 1,
+    "weight": 1
+  },
+  {
+    "id": "g08",
+    "type": "mcq",
+    "question": "We met ___ the airport.",
+    "choices": ["in", "at", "on", "to"],
+    "answerIndex": 1,
+    "weight": 1
+  },
+  {
+    "id": "g09",
+    "type": "mcq",
+    "question": "She goes to work ___ bus.",
+    "choices": ["by", "on", "in", "with"],
+    "answerIndex": 0,
+    "weight": 1
+  },
+  {
+    "id": "g10",
+    "type": "mcq",
+    "question": "It has been raining ___ two hours.",
+    "choices": ["for", "since", "by", "until"],
+    "answerIndex": 0,
+    "weight": 1
+  },
+  {
+    "id": "g11",
+    "type": "gap",
+    "prompt": "Present Perfect vs Past Simple",
+    "text": "I ___ (never/see) such a movie before.",
+    "solution": ["have never seen", "never have seen"],
+    "weight": 1
+  },
+  {
+    "id": "g12",
+    "type": "gap",
+    "prompt": "Article usage",
+    "text": "She bought ___ umbrella yesterday.",
+    "solution": ["an", "an umbrella"],
+    "weight": 1
+  },
+  {
+    "id": "g13",
+    "type": "gap",
+    "prompt": "There is/are",
+    "text": "There ___ many people in the park.",
+    "solution": ["are", "there are"],
+    "weight": 1
+  },
+  {
+    "id": "g14",
+    "type": "gap",
+    "prompt": "Do/Does",
+    "text": "___ he like jazz?",
+    "solution": ["does", "does he"],
+    "weight": 1
+  },
+  {
+    "id": "g15",
+    "type": "gap",
+    "prompt": "Prepositions in/at/on",
+    "text": "We have a meeting ___ Monday.",
+    "solution": ["on", "on monday"],
+    "weight": 1
+  },
+  {
+    "id": "g16",
+    "type": "gap",
+    "prompt": "For/Since",
+    "text": "She has lived here ___ 2010.",
+    "solution": ["since", "since 2010"],
+    "weight": 1
+  },
+  {
+    "id": "g17",
+    "type": "gap",
+    "prompt": "By/Until",
+    "text": "I will finish ___ tomorrow.",
+    "solution": ["by", "by tomorrow"],
+    "weight": 1
+  },
+  {
+    "id": "g18",
+    "type": "gap",
+    "prompt": "Continuous vs Simple",
+    "text": "Right now, he ___ (read) a book.",
+    "solution": ["is reading", "he is reading"]
+  },
+  {
+    "id": "g19",
+    "type": "gap",
+    "prompt": "There is/are",
+    "text": "There ___ a problem with this code.",
+    "solution": ["is", "there is"]
+  },
+  {
+    "id": "g20",
+    "type": "gap",
+    "prompt": "Do/Does/Did",
+    "text": "When ___ you arrive?",
+    "solution": ["did", "did you"]
+  },
+  {
+    "id": "g21",
+    "type": "mcq",
+    "question": "He ___ breakfast when I called.",
+    "choices": ["had", "was having", "has", "is having"],
+    "answerIndex": 1
+  },
+  {
+    "id": "g22",
+    "type": "mcq",
+    "question": "She ___ to the gym every day.",
+    "choices": ["go", "goes", "is go", "going"],
+    "answerIndex": 1
+  },
+  {
+    "id": "g23",
+    "type": "mcq",
+    "question": "___ you ever been to Japan?",
+    "choices": ["Did", "Have", "Do", "Are"],
+    "answerIndex": 1
+  },
+  {
+    "id": "g24",
+    "type": "mcq",
+    "question": "We usually have lunch ___ noon.",
+    "choices": ["in", "at", "on", "by"],
+    "answerIndex": 1
+  },
+  {
+    "id": "g25",
+    "type": "mcq",
+    "question": "She is ___ honest person.",
+    "choices": ["a", "an", "the", "—"],
+    "answerIndex": 1
+  },
+  {
+    "id": "g26",
+    "type": "mcq",
+    "question": "I have worked here ___ five years.",
+    "choices": ["for", "since", "by", "until"],
+    "answerIndex": 0
+  },
+  {
+    "id": "g27",
+    "type": "gap",
+    "prompt": "Articles",
+    "text": "He is ___ engineer.",
+    "solution": ["an", "an engineer"]
+  },
+  {
+    "id": "g28",
+    "type": "gap",
+    "prompt": "Prepositions",
+    "text": "She was born ___ 1990.",
+    "solution": ["in", "in 1990"]
+  },
+  {
+    "id": "g29",
+    "type": "gap",
+    "prompt": "There is/are",
+    "text": "___ a lot of traffic today.",
+    "solution": ["there is", "is"]
+  },
+  {
+    "id": "g30",
+    "type": "gap",
+    "prompt": "Tenses",
+    "text": "They ___ (not/finish) the project yet.",
+    "solution": ["have not finished", "haven't finished", "have n't finished"]
+  }
+]
