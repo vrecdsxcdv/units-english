@@ -26,27 +26,23 @@ interface ElasticEmailResponse {
  * - ELASTIC_EMAIL_FROM - Email отправителя (должен быть верифицирован в Elastic Email)
  * - NEXTAUTH_URL - Базовый URL приложения (например: https://unitsenglish.com)
  */
-export async function sendVerificationEmail(email: string, token: string): Promise<void> {
+export async function sendVerificationEmail(email: string, code: string): Promise<void> {
   // Валидация переменных окружения
   const apiKey = process.env.ELASTIC_EMAIL_API_KEY;
   const fromEmail = process.env.ELASTIC_EMAIL_FROM || 'no-reply@mydomain.com';
-  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
 
   if (!apiKey) {
     throw new Error('ELASTIC_EMAIL_API_KEY is not configured in environment variables');
   }
 
-  // Генерация ссылки верификации
-  const verificationUrl = `${baseUrl}/verify-email?token=${encodeURIComponent(token)}`;
-
-  // HTML шаблон письма
+  // HTML шаблон письма с 6-значным кодом
   const htmlBody = `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirm your email</title>
+  <title>Код подтверждения</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px;">
@@ -57,7 +53,7 @@ export async function sendVerificationEmail(email: string, token: string): Promi
           <tr>
             <td style="padding: 40px 40px 20px 40px; text-align: center;">
               <h1 style="margin: 0; color: #4f46e5; font-size: 28px; font-weight: bold;">
-                Confirm your email
+                Подтвердите email
               </h1>
             </td>
           </tr>
@@ -66,30 +62,22 @@ export async function sendVerificationEmail(email: string, token: string): Promi
           <tr>
             <td style="padding: 20px 40px;">
               <p style="margin: 0 0 20px 0; color: #333; font-size: 16px; line-height: 24px;">
-                Thank you for registering! Please confirm your email address by clicking the button below:
+                Спасибо за регистрацию! Введите этот код для подтверждения:
               </p>
 
-              <!-- Button -->
+              <!-- Code -->
               <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
                 <tr>
                   <td align="center">
-                    <a href="${verificationUrl}"
-                       style="display: inline-block; background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 14px 40px; border-radius: 6px; font-size: 16px; font-weight: bold;">
-                      Confirm Email
-                    </a>
+                    <div style="display: inline-block; background-color: #f3f4f6; padding: 20px 40px; border-radius: 8px; font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #4f46e5;">
+                      ${code}
+                    </div>
                   </td>
                 </tr>
               </table>
 
-              <p style="margin: 20px 0; color: #666; font-size: 14px; line-height: 20px;">
-                Or copy and paste this link into your browser:
-              </p>
-              <p style="margin: 0 0 20px 0; color: #4f46e5; font-size: 14px; word-break: break-all;">
-                ${verificationUrl}
-              </p>
-
               <p style="margin: 20px 0 0 0; color: #999; font-size: 13px; line-height: 18px;">
-                This link will expire in 15 minutes. If you didn't register, please ignore this email.
+                Код действителен 15 минут. Если вы не регистрировались, проигнорируйте это письмо.
               </p>
             </td>
           </tr>
@@ -98,7 +86,7 @@ export async function sendVerificationEmail(email: string, token: string): Promi
           <tr>
             <td style="padding: 20px 40px 40px 40px; border-top: 1px solid #eeeeee;">
               <p style="margin: 0; color: #999; font-size: 12px; text-align: center;">
-                © ${new Date().getFullYear()} Units English. All rights reserved.
+                © ${new Date().getFullYear()} Units English. Все права защищены.
               </p>
             </td>
           </tr>
@@ -110,17 +98,17 @@ export async function sendVerificationEmail(email: string, token: string): Promi
 </html>
   `.trim();
 
-  // Plain text версия (fallback для email клиентов без HTML)
+  // Plain text версия
   const textBody = `
-Confirm your email
+Подтвердите email
 
-Thank you for registering! Please confirm your email address by clicking the link below:
+Спасибо за регистрацию! Ваш код подтверждения:
 
-${verificationUrl}
+${code}
 
-This link will expire in 15 minutes. If you didn't register, please ignore this email.
+Код действителен 15 минут. Если вы не регистрировались, проигнорируйте это письмо.
 
-© ${new Date().getFullYear()} Units English. All rights reserved.
+© ${new Date().getFullYear()} Units English. Все права защищены.
   `.trim();
 
   // Подготовка данных для Elastic Email API v2
@@ -129,7 +117,7 @@ This link will expire in 15 minutes. If you didn't register, please ignore this 
   formData.append('from', fromEmail);
   formData.append('fromName', 'Units English');
   formData.append('to', email);
-  formData.append('subject', 'Confirm your email');
+  formData.append('subject', 'Код подтверждения - Units English');
   formData.append('bodyHtml', htmlBody);
   formData.append('bodyText', textBody);
   formData.append('isTransactional', 'true'); // Транзакционное письмо (не маркетинг)
