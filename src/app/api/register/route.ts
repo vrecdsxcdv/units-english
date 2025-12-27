@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { sendVerificationEmail } from "@/lib/email-resend"; // Resend version
+import { sendVerificationEmail } from "@/lib/email-elastic";
 
 export const runtime = "nodejs";
 
