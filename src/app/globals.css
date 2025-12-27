@@ -126,6 +126,21 @@
   }
 }
 
+/* Mobile viewport height fix */
+@supports (min-height: 100dvh) {
+  .min-h-screen-mobile {
+    min-height: 100dvh;
+  }
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  .min-h-screen {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+}
+
 :root {
   --noise-url: url("data:image/svg+xml;utf8,\
   <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'>\

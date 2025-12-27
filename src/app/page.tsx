@@ -8,10 +8,15 @@ export default function HomePage() {
   const router = useRouter();
 
   return (
-    <div
-      className="flex flex-col min-h-screen bg-cover bg-center bg-fixed scroll-smooth"
-      style={{ backgroundImage: "url('/wmremove-transformed-2.jpeg')" }}
-    >
+    <div className="relative flex flex-col min-h-screen scroll-smooth">
+      {/* Fixed background for all devices */}
+      <div
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        style={{
+          backgroundImage: "url('/wmremove-transformed-2.jpeg')",
+          minHeight: '100dvh',
+        }}
+      />
       {/* Hero - Full Height Centered */}
       <section className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-20">
         <div className="text-center max-w-4xl">
