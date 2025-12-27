@@ -120,7 +120,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 max-w-xl mx-auto">
+          <div className="flex flex-row gap-4 overflow-x-auto pb-4 px-2 snap-x snap-mandatory scrollbar-hide">
             {[
               { icon: "🎯", title: "Целевое обучение", desc: "Материалы подобраны под ваш уровень и цели" },
               { icon: "📊", title: "Отслеживание прогресса", desc: "Видьте свои достижения и слабые места" },
@@ -133,7 +133,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="p-6 rounded-2xl"
+                className="p-6 rounded-2xl flex-shrink-0 w-64 snap-center"
                 style={{
                   background: "rgba(255,255,255,0.12)",
                   backdropFilter: "blur(20px)",
@@ -173,7 +173,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 max-w-xl mx-auto">
+          <div className="flex flex-row gap-4 overflow-x-auto pb-4 px-2 snap-x snap-mandatory scrollbar-hide">
             {[
               { icon: "👨‍🎓", title: "Студенты", desc: "Подготовка к экзаменам и академическому английскому" },
               { icon: "💼", title: "Профессионалы", desc: "Деловой английский для карьерного роста" },
@@ -185,7 +185,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.15 }}
-                className="p-8 rounded-2xl text-center"
+                className="p-8 rounded-2xl text-center flex-shrink-0 w-72 snap-center"
                 style={{
                   background: "rgba(255,255,255,0.12)",
                   backdropFilter: "blur(20px)",
