@@ -605,10 +605,10 @@ export default async function Page({ searchParams }: Props) {
         name="Elementary English"
         description="Полный курс английского языка уровня A1 Elementary: грамматика, лексика, упражнения. Изучите основы английского языка от нуля до уровня A1. 71 интерактивная тема с практическими заданиями."
       />
-      <div className="flex min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         <Sidebar activeTopic={t} level="a1" />
-        <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold mb-6">
+        <main className="p-4 md:p-6 pt-16">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
           Тема урока: <span className="text-indigo-600">{topicTitles[t]}</span>
         </h1>
 

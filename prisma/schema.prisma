@@ -41,6 +41,8 @@ model User {
   accounts Account[]
   sessions Session[]
   lessonProgress LessonProgress[]
+  skillVector SkillVector?
+  memories UserMemory[]
 }
 
 // === Placement test progress tracking ===
@@ -96,29 +98,113 @@ model LessonProgress {
 
 // === AI Tutor Chat History ===
 model ChatConversation {
-  id        String   @id @default(cuid())
-  userId    String
-  mode      String   // "general" | "lesson" | "practice"
-  title     String?  // Автогенерируемый заголовок
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  messages  ChatMessage[]
+  id            String   @id @default(cuid())
+  userId        String
+  mode          String   // "general" | "lesson" | "practice"
+  title         String?  // Автогенерируемый заголовок
+  status        String   @default("active") // "active" | "archived"
 
-  @@index([userId, createdAt])
+  // Статистика
+  messageCount  Int      @default(0)
+  totalTokens   Int      @default(0)
+
+  // Session tracking
+  sessionPhase  String   @default("ONBOARDING") // "ONBOARDING" | "TEACHING"
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages      ChatMessage[]
+  summaries     ChatSummary[]
+
+  @@index([userId, status])
+  @@index([userId, updatedAt])
 }
 
 model ChatMessage {
   id             String   @id @default(cuid())
   conversationId String
-  role           String   // "user" | "assistant"
+  role           String   // "user" | "assistant" | "system"
   content        String
+  seqNum         Int      @default(0) // Порядковый номер в чате (временно default для миграции)
+  tokenCount     Int?
   timestamp      DateTime @default(now())
 
   conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sourceMemories UserMemory[] // Memories извлечённые из этого сообщения
 
-  @@index([conversationId, timestamp])
+  @@index([conversationId, seqNum])
+}
+
+// Rolling summaries для длинных чатов
+model ChatSummary {
+  id             String   @id @default(cuid())
+  conversationId String
+  summary        String
+  fromSeqNum     Int      // С какого сообщения
+  toSeqNum       Int      // По какое сообщение
+  originalTokens Int?
+  summaryTokens  Int?
+  createdAt      DateTime @default(now())
+
+  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+}
+
+// === Skill Vector (10D) ===
+model SkillVector {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+
+  // 10 навыков (0.0 - 1.0)
+  grammar       Float    @default(0.3)
+  vocabulary    Float    @default(0.3)
+  pronunciation Float    @default(0.3)
+  listening     Float    @default(0.3)
+  speaking      Float    @default(0.3)
+  slang         Float    @default(0.2)
+  wordFormation Float    @default(0.2)
+  fluency       Float    @default(0.2)
+  writing       Float    @default(0.3)
+  comprehension Float    @default(0.3)
+
+  // Метаданные
+  lastAssessedAt DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// === User Memories (долгосрочные факты об ученике) ===
+model UserMemory {
+  id              String   @id @default(cuid())
+  userId          String
+
+  memoryType      String   // "fact" | "preference" | "goal" | "skill_note" | "context"
+  content         String   // Текст факта: "работает в IT", "любит краткие объяснения"
+
+  // Важность и использование
+  importance      Float    @default(0.5) // 0-1
+  accessCount     Int      @default(0)
+  lastAccessedAt  DateTime?
+
+  // Источник
+  sourceMessageId String?
+  sourceMessage   ChatMessage? @relation(fields: [sourceMessageId], references: [id], onDelete: SetNull)
+
+  isActive        Boolean  @default(true)
+  expiresAt       DateTime? // NULL = бессрочно
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isActive])
+  @@index([userId, memoryType])
 }
 
 // === Topic Completion Tracking ===

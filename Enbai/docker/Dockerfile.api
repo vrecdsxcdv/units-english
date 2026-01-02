@@ -1,0 +1,62 @@
+# API Dockerfile
+FROM node:20-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+WORKDIR /app
+
+# Copy package files
+COPY package.json ./
+COPY apps/api/package.json ./apps/api/
+COPY packages/types/package.json ./packages/types/
+
+# Install dependencies
+RUN npm install
+
+# Development image
+FROM base AS dev
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
+COPY --from=deps /app/packages/types/node_modules ./packages/types/node_modules
+
+COPY . .
+
+# Generate Prisma client
+RUN cd apps/api && npx prisma generate
+
+WORKDIR /app/apps/api
+
+EXPOSE 3001
+
+CMD ["npm", "run", "dev"]
+
+# Production build
+FROM base AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build types package
+RUN cd packages/types && npm run build
+
+# Build API
+RUN cd apps/api && npx prisma generate && npm run build
+
+# Production image
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Copy built files
+COPY --from=builder /app/apps/api/dist ./dist
+COPY --from=builder /app/apps/api/node_modules ./node_modules
+COPY --from=builder /app/apps/api/prisma ./prisma
+COPY --from=builder /app/apps/api/package.json ./
+
+EXPOSE 3001
+
+CMD ["npm", "start"]

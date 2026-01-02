@@ -25,6 +25,185 @@ type NextLesson = {
   title: string;
 } | null;
 
+type SkillsData = {
+  skills: {
+    grammar: number;
+    vocabulary: number;
+    pronunciation: number;
+    listening: number;
+    speaking: number;
+    slang: number;
+    wordFormation: number;
+    fluency: number;
+    writing: number;
+    comprehension: number;
+  };
+  lastAssessedAt: string | null;
+};
+
+// Skill labels in Russian
+const skillLabels: { key: keyof SkillsData["skills"]; label: string; shortLabel: string }[] = [
+  { key: "grammar", label: "Грамматика", shortLabel: "Грам." },
+  { key: "vocabulary", label: "Словарный запас", shortLabel: "Слова" },
+  { key: "pronunciation", label: "Произношение", shortLabel: "Произн." },
+  { key: "listening", label: "Аудирование", shortLabel: "Аудир." },
+  { key: "speaking", label: "Разговорный", shortLabel: "Разг." },
+  { key: "slang", label: "Сленг", shortLabel: "Сленг" },
+  { key: "wordFormation", label: "Словообразование", shortLabel: "Словообр." },
+  { key: "fluency", label: "Беглость", shortLabel: "Бегл." },
+  { key: "writing", label: "Письмо", shortLabel: "Письмо" },
+  { key: "comprehension", label: "Понимание", shortLabel: "Поним." },
+];
+
+// Radar Chart Component
+function RadarChart({ skills }: { skills: SkillsData["skills"] }) {
+  const size = 280;
+  const center = size / 2;
+  const maxRadius = 100;
+  const levels = 5;
+  const numSkills = skillLabels.length;
+  const angleStep = (2 * Math.PI) / numSkills;
+
+  // Calculate point positions for a given radius
+  const getPoint = (index: number, radius: number) => {
+    const angle = angleStep * index - Math.PI / 2;
+    return {
+      x: center + radius * Math.cos(angle),
+      y: center + radius * Math.sin(angle),
+    };
+  };
+
+  // Generate grid lines
+  const gridLines = [];
+  for (let level = 1; level <= levels; level++) {
+    const radius = (maxRadius / levels) * level;
+    const points = skillLabels.map((_, i) => {
+      const p = getPoint(i, radius);
+      return `${p.x},${p.y}`;
+    }).join(" ");
+    gridLines.push(
+      <polygon
+        key={level}
+        points={points}
+        fill="none"
+        stroke="rgba(0,0,0,0.08)"
+        strokeWidth="1"
+      />
+    );
+  }
+
+  // Generate axis lines
+  const axisLines = skillLabels.map((_, i) => {
+    const end = getPoint(i, maxRadius);
+    return (
+      <line
+        key={i}
+        x1={center}
+        y1={center}
+        x2={end.x}
+        y2={end.y}
+        stroke="rgba(0,0,0,0.05)"
+        strokeWidth="1"
+      />
+    );
+  });
+
+  // Generate data polygon
+  const dataPoints = skillLabels.map((skill, i) => {
+    const value = skills[skill.key];
+    const radius = maxRadius * value;
+    const p = getPoint(i, radius);
+    return `${p.x},${p.y}`;
+  }).join(" ");
+
+  // Generate labels
+  const labels = skillLabels.map((skill, i) => {
+    const p = getPoint(i, maxRadius + 25);
+    const value = Math.round(skills[skill.key] * 100);
+    return (
+      <g key={i}>
+        <text
+          x={p.x}
+          y={p.y}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="#1d1d1f"
+          fontSize="10"
+          fontWeight="500"
+        >
+          {skill.shortLabel}
+        </text>
+        <text
+          x={p.x}
+          y={p.y + 12}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="#86868b"
+          fontSize="9"
+        >
+          {value}%
+        </text>
+      </g>
+    );
+  });
+
+  // Generate data points (dots)
+  const dataPointDots = skillLabels.map((skill, i) => {
+    const value = skills[skill.key];
+    const radius = maxRadius * value;
+    const p = getPoint(i, radius);
+    return (
+      <circle
+        key={i}
+        cx={p.x}
+        cy={p.y}
+        r="4"
+        fill="url(#pointGradient)"
+        stroke="white"
+        strokeWidth="2"
+      />
+    );
+  });
+
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="mx-auto">
+      <defs>
+        <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(59,130,246,0.6)" />
+          <stop offset="100%" stopColor="rgba(139,92,246,0.6)" />
+        </linearGradient>
+        <linearGradient id="radarStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3B82F6" />
+          <stop offset="100%" stopColor="#8B5CF6" />
+        </linearGradient>
+        <linearGradient id="pointGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#60A5FA" />
+          <stop offset="100%" stopColor="#A78BFA" />
+        </linearGradient>
+      </defs>
+
+      {/* Grid */}
+      {gridLines}
+      {axisLines}
+
+      {/* Data area */}
+      <polygon
+        points={dataPoints}
+        fill="url(#radarGradient)"
+        stroke="url(#radarStroke)"
+        strokeWidth="2"
+        style={{ filter: "drop-shadow(0 0 10px rgba(59,130,246,0.3))" }}
+      />
+
+      {/* Data points */}
+      {dataPointDots}
+
+      {/* Labels */}
+      {labels}
+    </svg>
+  );
+}
+
 export default function ProfilePage() {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -36,6 +215,11 @@ export default function ProfilePage() {
 
   const { data: nextLessonData } = useSWR<{ nextLesson: NextLesson }>(
     session?.user ? "/api/user/next-lesson" : null,
+    fetcher
+  );
+
+  const { data: skillsData } = useSWR<SkillsData>(
+    session?.user ? "/api/user/skills" : null,
     fetcher
   );
 
@@ -61,30 +245,26 @@ export default function ProfilePage() {
   const email = session.user.email || "";
   const initials = displayName.slice(0, 2).toUpperCase();
 
+  // Calculate average skill level
+  const avgSkill = skillsData?.skills
+    ? Math.round(
+        (Object.values(skillsData.skills).reduce((a, b) => a + b, 0) / 10) * 100
+      )
+    : 0;
+
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/IMAGE 2025-12-21 20:48:13.jpg')" }}
-    >
+    <div className="min-h-screen bg-[#f5f5f7]">
       <div className="relative z-10 min-h-screen px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="max-w-5xl mx-auto space-y-8">
 
           {/* Header */}
           <div className="flex items-center justify-between">
-            <h1
-              className="text-3xl md:text-4xl font-bold text-white"
-              style={{ textShadow: "0 2px 20px rgba(0,0,0,0.3)" }}
-            >
+            <h1 className="text-3xl md:text-4xl font-bold text-[#1d1d1f]">
               Личный кабинет
             </h1>
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="px-5 py-2.5 rounded-full text-sm font-medium text-white/90 hover:text-white transition-all hover:scale-105 flex items-center gap-2"
-              style={{
-                background: "rgba(255,255,255,0.15)",
-                backdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.25)",
-              }}
+              className="px-5 py-2.5 rounded-full text-sm font-medium text-[#86868b] hover:text-[#1d1d1f] transition-all hover:scale-105 flex items-center gap-2 bg-white border border-[#d2d2d7]"
             >
               <LogoutIcon />
               Выйти
@@ -92,16 +272,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Profile Card */}
-          <div
-            className="rounded-3xl p-8"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-            }}
-          >
+          <div className="rounded-3xl p-8 bg-white shadow-sm border border-[#d2d2d7]/50">
             <div className="flex flex-col md:flex-row items-center gap-6">
               {/* Avatar */}
               <div
@@ -116,13 +287,10 @@ export default function ProfilePage() {
 
               {/* User Info */}
               <div className="text-center md:text-left flex-1">
-                <h2
-                  className="text-2xl font-bold text-white mb-1"
-                  style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}
-                >
+                <h2 className="text-2xl font-bold text-[#1d1d1f] mb-1">
                   {displayName}
                 </h2>
-                <p className="text-white/60">{email}</p>
+                <p className="text-[#86868b]">{email}</p>
               </div>
 
               {/* Stats Pills */}
@@ -217,60 +385,37 @@ export default function ProfilePage() {
 
             <button
               onClick={() => router.push("/assessment")}
-              className="p-6 rounded-2xl text-left transition-all hover:scale-105"
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                backdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.2)",
-              }}
+              className="p-6 rounded-2xl text-left transition-all hover:scale-105 bg-white border border-[#d2d2d7]/50 shadow-sm"
             >
               <div className="text-3xl mb-3">✅</div>
-              <div className="text-lg font-bold text-white">Тест уровня</div>
-              <div className="text-sm text-white/60">Проверьте знания</div>
+              <div className="text-lg font-bold text-[#1d1d1f]">Тест уровня</div>
+              <div className="text-sm text-[#86868b]">Проверьте знания</div>
             </button>
 
             <button
-              onClick={() => router.push("/reviews")}
-              className="p-6 rounded-2xl text-left transition-all hover:scale-105"
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                backdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.2)",
-              }}
+              onClick={() => router.push("/tutor")}
+              className="p-6 rounded-2xl text-left transition-all hover:scale-105 bg-white border border-[#d2d2d7]/50 shadow-sm"
             >
-              <div className="text-3xl mb-3">⭐</div>
-              <div className="text-lg font-bold text-white">Отзывы</div>
-              <div className="text-sm text-white/60">Поделитесь опытом</div>
+              <div className="text-3xl mb-3">🤖</div>
+              <div className="text-lg font-bold text-[#1d1d1f]">AI Репетитор</div>
+              <div className="text-sm text-[#86868b]">Персональные занятия</div>
             </button>
           </div>
 
           {/* Progress Section */}
-          <div
-            className="rounded-3xl p-8"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.2)",
-            }}
-          >
-            <h3
-              className="text-xl font-bold text-white mb-6"
-              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}
-            >
+          <div className="rounded-3xl p-8 bg-white shadow-sm border border-[#d2d2d7]/50">
+            <h3 className="text-xl font-bold text-[#1d1d1f] mb-6">
               Ваш прогресс
             </h3>
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-white/80">Пройдено уроков</span>
-                  <span className="text-white font-medium">
+                  <span className="text-[#86868b]">Пройдено уроков</span>
+                  <span className="text-[#1d1d1f] font-medium">
                     {stats?.completedLessons || 0} / {stats?.totalLessons || 0}
                   </span>
                 </div>
-                <div
-                  className="h-3 rounded-full overflow-hidden"
-                  style={{ background: "rgba(255,255,255,0.1)" }}
-                >
+                <div className="h-3 rounded-full overflow-hidden bg-[#f5f5f7]">
                   <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{
@@ -281,6 +426,64 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Skills Radar Chart */}
+          <div className="rounded-3xl p-8 bg-white shadow-sm border border-[#d2d2d7]/50">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-[#1d1d1f]">
+                Навыки
+              </h3>
+              <div className="px-4 py-2 rounded-full bg-[#f5f5f7] border border-[#d2d2d7]/50">
+                <span className="text-[#86868b] text-sm">Средний уровень: </span>
+                <span className="text-[#1d1d1f] font-bold">{avgSkill}%</span>
+              </div>
+            </div>
+
+            {skillsData?.skills ? (
+              <div className="flex flex-col lg:flex-row items-center gap-8">
+                {/* Radar Chart */}
+                <div className="flex-shrink-0">
+                  <RadarChart skills={skillsData.skills} />
+                </div>
+
+                {/* Skills List */}
+                <div className="flex-1 w-full">
+                  <div className="grid grid-cols-2 gap-3">
+                    {skillLabels.map((skill) => {
+                      const value = skillsData.skills[skill.key];
+                      const percent = Math.round(value * 100);
+                      return (
+                        <div key={skill.key} className="flex items-center gap-3">
+                          <div className="flex-1">
+                            <div className="flex justify-between text-sm mb-1">
+                              <span className="text-[#86868b]">{skill.label}</span>
+                              <span className="text-[#1d1d1f] font-medium">{percent}%</span>
+                            </div>
+                            <div className="h-2 rounded-full overflow-hidden bg-[#f5f5f7]">
+                              <div
+                                className="h-full rounded-full transition-all duration-500"
+                                style={{
+                                  width: `${percent}%`,
+                                  background: "linear-gradient(90deg, #3B82F6, #8B5CF6)",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center py-12">
+                <div className="text-[#86868b] text-center">
+                  <div className="text-4xl mb-3">📊</div>
+                  <p>Загрузка данных о навыках...</p>
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

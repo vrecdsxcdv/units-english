@@ -1,0 +1,2038 @@
+"use client";
+
+import { useState } from "react";
+import { Section as UiSection } from "@/components/ui/Section";
+import CheckableExercise, { FillItem } from "../CheckableExercise";
+
+type Props = { step: number };
+
+export default function CleftSentences({ step }: Props) {
+  switch (step) {
+    case 1:
+      return <Step1 />;
+    case 2:
+      return <Step2 />;
+    case 3:
+      return <Step3 />;
+    case 4:
+      return <Step4 />;
+    case 5:
+      return <Step5 />;
+    case 6:
+      return <Step6 />;
+    case 7:
+      return <Step7 />;
+    case 8:
+      return <Step8 />;
+    case 9:
+      return <Step9 />;
+    case 10:
+      return <Step10 />;
+    case 11:
+      return <Step11 />;
+    case 12:
+      return <Step12 />;
+    default:
+      return <Step1 />;
+  }
+}
+
+/* ========== ШАГ 1: Введение в Cleft Sentences ========== */
+function Step1() {
+  const [selectedExample, setSelectedExample] = useState(0);
+
+  const examples = [
+    {
+      title: "Обычное предложение",
+      sentence: "I lost my keys yesterday.",
+      emphasis: "Нет особого акцента",
+      emoji: "😐",
+      color: "gray",
+    },
+    {
+      title: "It-cleft (акцент на объект)",
+      sentence: "It was my keys that I lost yesterday.",
+      emphasis: "Акцент на 'keys' (ключи, а не что-то другое)",
+      emoji: "🔑",
+      color: "blue",
+    },
+    {
+      title: "Wh-cleft (акцент на действие)",
+      sentence: "What I lost yesterday was my keys.",
+      emphasis: "Акцент на потерю",
+      emoji: "💡",
+      color: "purple",
+    },
+  ];
+
+  const current = examples[selectedExample];
+
+  return (
+    <>
+      <UiSection title="🎯 Cleft Sentences — Расщепленные предложения">
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 mb-6 border-2 border-blue-300">
+          <div className="text-center mb-6">
+            <div className="text-7xl mb-4">🔦</div>
+            <h2 className="text-3xl font-bold text-blue-900 mb-3">
+              Cleft Sentences
+            </h2>
+            <p className="text-xl text-blue-700">
+              Выделяем важную информацию прожектором!
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 mb-4">
+            <h3 className="text-xl font-bold text-blue-900 mb-3">
+              🎯 Главная идея:
+            </h3>
+            <p className="text-lg text-zinc-800 leading-relaxed">
+              <strong>Cleft Sentences</strong> (расщепленные предложения) — это
+              способ <strong>выделить конкретную часть информации</strong>,
+              "расщепив" обычное предложение на две части. Используем, когда
+              хотим сделать акцент или исправить недопонимание.
+            </p>
+          </div>
+
+          <div className="bg-blue-100 rounded-lg p-5 border-2 border-blue-400">
+            <p className="font-bold text-blue-900 mb-2 text-lg">
+              📐 Два основных типа:
+            </p>
+            <div className="space-y-3">
+              <div className="bg-white rounded-lg p-4">
+                <p className="font-bold text-blue-700 mb-1">
+                  1. It-cleft sentences
+                </p>
+                <code className="text-lg text-blue-900">
+                  It is/was + [focus] + that/who...
+                </code>
+                <p className="text-sm text-gray-600 mt-2">
+                  Акцент на конкретном элементе
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-4">
+                <p className="font-bold text-purple-700 mb-1">
+                  2. Wh-cleft sentences
+                </p>
+                <code className="text-lg text-purple-900">
+                  What/Where/When... + is/was...
+                </code>
+                <p className="text-sm text-gray-600 mt-2">
+                  Акцент через вопросительное слово
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="💡 Интерактивное сравнение">
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border-2 border-blue-300">
+          <h4 className="text-lg font-bold text-gray-800 mb-4 text-center">
+            🎭 Выберите вариант предложения
+          </h4>
+
+          <div className="flex gap-2 mb-6 justify-center flex-wrap">
+            {examples.map((ex, idx) => (
+              <button
+                key={idx}
+                onClick={() => setSelectedExample(idx)}
+                className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                  selectedExample === idx
+                    ? "bg-blue-600 text-white scale-105"
+                    : "bg-white text-gray-700 hover:bg-blue-100"
+                }`}
+              >
+                {ex.title}
+              </button>
+            ))}
+          </div>
+
+          <div
+            className={`bg-${current.color}-100 p-6 rounded-xl border-2 border-${current.color}-300`}
+          >
+            <div className="text-center text-5xl mb-4">{current.emoji}</div>
+            <div className="bg-white p-5 rounded-lg mb-4">
+              <p className="text-2xl font-bold text-gray-800 text-center">
+                {current.sentence}
+              </p>
+            </div>
+            <div className={`bg-${current.color}-50 p-4 rounded-lg`}>
+              <p className="text-sm font-semibold text-gray-700">
+                📍 {current.emphasis}
+              </p>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="⚡ Зачем нужны Cleft Sentences?">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-200">
+            <div className="text-4xl mb-3">🎯</div>
+            <h4 className="font-bold text-gray-900 mb-2">Акцент</h4>
+            <p className="text-sm text-gray-700">
+              Выделить самую важную информацию в предложении
+            </p>
+          </div>
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
+            <div className="text-4xl mb-3">✅</div>
+            <h4 className="font-bold text-gray-900 mb-2">Коррекция</h4>
+            <p className="text-sm text-gray-700">
+              Исправить неправильную информацию или недопонимание
+            </p>
+          </div>
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-6 border border-amber-200">
+            <div className="text-4xl mb-3">💬</div>
+            <h4 className="font-bold text-gray-900 mb-2">Контраст</h4>
+            <p className="text-sm text-gray-700">
+              Противопоставить одну вещь другой
+            </p>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 2: It-cleft — Теория ========== */
+function Step2() {
+  return (
+    <>
+      <UiSection title="🔵 It-cleft sentences — Акцент через It">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8 mb-6 border-2 border-blue-300">
+          <div className="text-center mb-6">
+            <div className="text-6xl mb-3">🎯</div>
+            <h2 className="text-2xl font-bold text-blue-900">
+              It is/was + [focus] + that/who/which...
+            </h2>
+            <p className="text-blue-700 mt-2">
+              Выделяем конкретный элемент предложения
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 mb-4">
+            <h3 className="font-bold text-blue-900 text-lg mb-3">
+              📖 Формула:
+            </h3>
+            <div className="bg-blue-100 rounded-lg p-4 border-2 border-blue-400">
+              <div className="text-center mb-3">
+                <p className="text-xl font-mono font-bold text-blue-900">
+                  It + be + [выделяемая часть] + that/who/which + [остальное]
+                </p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-3 mt-4">
+                <div className="bg-white rounded p-3 text-center">
+                  <p className="text-sm font-semibold text-blue-900">It be</p>
+                  <p className="text-xs text-gray-600">
+                    It is / It was / It will be
+                  </p>
+                </div>
+                <div className="bg-white rounded p-3 text-center">
+                  <p className="text-sm font-semibold text-blue-900">Focus</p>
+                  <p className="text-xs text-gray-600">Что хотим выделить</p>
+                </div>
+                <div className="bg-white rounded p-3 text-center">
+                  <p className="text-sm font-semibold text-blue-900">
+                    that/who
+                  </p>
+                  <p className="text-xs text-gray-600">Связка</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-indigo-50 rounded-lg p-5 border-2 border-indigo-400">
+            <h3 className="font-bold text-indigo-900 mb-3">
+              🎯 Когда использовать:
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">1.</span>
+                <span className="text-gray-800">
+                  <strong>Акцент на человеке</strong> — кто именно сделал
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">2.</span>
+                <span className="text-gray-800">
+                  <strong>Акцент на предмете</strong> — что именно случилось
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">3.</span>
+                <span className="text-gray-800">
+                  <strong>Акцент на времени/месте</strong> — когда/где произошло
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">4.</span>
+                <span className="text-gray-800">
+                  <strong>Коррекция ошибки</strong> — исправить неверную
+                  информацию
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="📚 Примеры It-cleft sentences">
+        <div className="space-y-4">
+          {[
+            {
+              category: "👤 Акцент на человеке (who)",
+              normal: "John broke the window.",
+              cleft: "It was John who broke the window.",
+              focus: "Именно Джон (а не кто-то другой)",
+              color: "blue",
+            },
+            {
+              category: "📦 Акцент на предмете (that)",
+              normal: "I need a new laptop.",
+              cleft: "It's a new laptop that I need.",
+              focus: "Именно ноутбук (а не что-то другое)",
+              color: "indigo",
+            },
+            {
+              category: "📅 Акцент на времени (that)",
+              normal: "We met in 2020.",
+              cleft: "It was in 2020 that we met.",
+              focus: "Именно в 2020 (а не в другом году)",
+              color: "purple",
+            },
+            {
+              category: "📍 Акцент на месте (that)",
+              normal: "She found the keys in the kitchen.",
+              cleft: "It was in the kitchen that she found the keys.",
+              focus: "Именно на кухне (а не в другом месте)",
+              color: "violet",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className={`bg-white rounded-lg p-6 border-2 border-${item.color}-200`}
+            >
+              <h4 className="font-bold text-gray-800 mb-4">{item.category}</h4>
+              <div className="space-y-3">
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-gray-400">
+                  <p className="text-xs font-semibold text-gray-600 mb-1">
+                    Обычное предложение
+                  </p>
+                  <p className="text-gray-800 font-semibold">{item.normal}</p>
+                </div>
+                <div
+                  className={`bg-${item.color}-50 rounded-lg p-4 border-l-4 border-${item.color}-500`}
+                >
+                  <p
+                    className={`text-xs font-semibold text-${item.color}-700 mb-1`}
+                  >
+                    It-cleft (с акцентом)
+                  </p>
+                  <p className="text-gray-800 font-bold text-lg mb-2">
+                    {item.cleft}
+                  </p>
+                  <p className="text-sm text-gray-600 italic">
+                    💡 {item.focus}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+
+      <UiSection title="📘 Словарь: Выделение и акцент">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {[
+            {
+              word: "emphasize",
+              transcr: "/ˈemfəsaɪz/",
+              translation: "подчеркивать, акцентировать",
+            },
+            {
+              word: "highlight",
+              transcr: "/ˈhaɪlaɪt/",
+              translation: "выделять",
+            },
+            {
+              word: "focus on",
+              transcr: "/ˈfəʊkəs ɒn/",
+              translation: "фокусироваться на",
+            },
+            {
+              word: "specifically",
+              transcr: "/spəˈsɪfɪkli/",
+              translation: "конкретно",
+            },
+            {
+              word: "precisely",
+              transcr: "/prɪˈsaɪsli/",
+              translation: "точно, именно",
+            },
+            {
+              word: "exactly",
+              transcr: "/ɪɡˈzæktli/",
+              translation: "в точности",
+            },
+            {
+              word: "particular",
+              transcr: "/pəˈtɪkjələ(r)/",
+              translation: "особенный, конкретный",
+            },
+            {
+              word: "stress",
+              transcr: "/stres/",
+              translation: "ударение, акцент",
+            },
+            {
+              word: "point out",
+              transcr: "/pɔɪnt aʊt/",
+              translation: "указывать",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-lg p-4 border-l-4 border-blue-400"
+            >
+              <p className="font-bold text-blue-900 text-lg">{item.word}</p>
+              <p className="text-xs text-blue-600 mb-1">{item.transcr}</p>
+              <p className="text-sm text-zinc-800">{item.translation}</p>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 3: It-cleft — Практика ========== */
+function Step3() {
+  const items: FillItem[] = [
+    {
+      left: "1. Normal: Sarah called me yesterday. → Cleft: It",
+      right: "Sarah who called me yesterday. (акцент на человеке)",
+      answers: ["was"],
+      explanation:
+        "It was Sarah who... — акцент на том, что именно Сара позвонила",
+      wide: true,
+    },
+    {
+      left: "2. Normal: I met her in Paris. → Cleft: It was",
+      right: "Paris that I met her. (акцент на месте)",
+      answers: ["in"],
+      explanation: "It was in Paris that... — акцент на месте встречи",
+      wide: true,
+    },
+    {
+      left: "3. Normal: They announced the results on Monday. → Cleft: It",
+      right: "on Monday that they announced the results.",
+      answers: ["was"],
+      explanation: "It was on Monday that... — акцент на времени",
+      wide: true,
+    },
+    {
+      left: "4. Normal: He broke the vase. → Cleft: It was",
+      right: "who broke the vase. (акцент на том, кто сломал)",
+      answers: ["he", "him"],
+      explanation: "It was he/him who... — акцент на человеке",
+      wide: true,
+    },
+    {
+      left: "5. Normal: The noise woke me up. → Cleft: It",
+      right: "the noise that woke me up.",
+      answers: ["was"],
+      explanation: "It was the noise that... — акцент на шуме как причине",
+      wide: true,
+    },
+    {
+      left: "6. Normal: I need your help. → Cleft: It's",
+      right: "help that I need. (акцент на том, что нужна помощь)",
+      answers: ["your"],
+      explanation: "It's your help that... — акцент на конкретной помощи",
+      wide: true,
+    },
+    {
+      left: "7. Normal: We started the project in January. → Cleft: It was in January",
+      right: "we started the project.",
+      answers: ["that"],
+      explanation: "It was in January that... — связка после выделяемой части",
+      wide: true,
+    },
+    {
+      left: "8. Normal: My sister gave me this book. → Cleft: It",
+      right: "my sister who gave me this book.",
+      answers: ["was"],
+      explanation: "It was my sister who... — акцент на том, кто дал книгу",
+      wide: true,
+    },
+  ];
+
+  return (
+    <>
+      <CheckableExercise
+        title="✏️ Упражнение: It-cleft sentences"
+        items={items}
+      />
+
+      <UiSection title="💡 Who vs That в It-cleft">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-300">
+            <h3 className="font-bold text-blue-900 text-lg mb-3 flex items-center gap-2">
+              <span>👤</span>
+              <span>WHO — для людей</span>
+            </h3>
+            <p className="text-sm text-gray-700 mb-3">
+              Используем <strong>who</strong>, когда выделяем человека
+            </p>
+            <div className="bg-white rounded p-4 space-y-2">
+              <p className="font-semibold text-gray-800 text-sm">
+                It was <strong>Sarah who</strong> helped me.
+              </p>
+              <p className="text-xs text-gray-600">Именно Сара помогла мне.</p>
+            </div>
+          </div>
+
+          <div className="bg-purple-50 rounded-lg p-6 border-2 border-purple-300">
+            <h3 className="font-bold text-purple-900 text-lg mb-3 flex items-center gap-2">
+              <span>📦</span>
+              <span>THAT — для всего остального</span>
+            </h3>
+            <p className="text-sm text-gray-700 mb-3">
+              Используем <strong>that</strong> для предметов, мест, времени
+            </p>
+            <div className="bg-white rounded p-4 space-y-2">
+              <p className="font-semibold text-gray-800 text-sm">
+                It was <strong>yesterday that</strong> I saw him.
+              </p>
+              <p className="text-xs text-gray-600">Именно вчера я его видел.</p>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 4: Wh-cleft — Теория ========== */
+function Step4() {
+  return (
+    <>
+      <UiSection title="🟣 Wh-cleft sentences — Акцент через What/Where/When">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-8 mb-6 border-2 border-purple-300">
+          <div className="text-center mb-6">
+            <div className="text-6xl mb-3">🔮</div>
+            <h2 className="text-2xl font-bold text-purple-900">
+              What/Where/When... + be + [focus]
+            </h2>
+            <p className="text-purple-700 mt-2">
+              Начинаем с вопросительного слова
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 mb-4">
+            <h3 className="font-bold text-purple-900 text-lg mb-3">
+              📖 Формула:
+            </h3>
+            <div className="bg-purple-100 rounded-lg p-4 border-2 border-purple-400">
+              <div className="text-center mb-3">
+                <p className="text-xl font-mono font-bold text-purple-900">
+                  Wh-word + clause + be + [focus]
+                </p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-3 mt-4">
+                <div className="bg-white rounded p-3 text-center">
+                  <p className="text-sm font-semibold text-purple-900">
+                    Wh-word
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    What, Where, When, Why, How
+                  </p>
+                </div>
+                <div className="bg-white rounded p-3 text-center">
+                  <p className="text-sm font-semibold text-purple-900">
+                    Clause
+                  </p>
+                  <p className="text-xs text-gray-600">I need, we want...</p>
+                </div>
+                <div className="bg-white rounded p-3 text-center">
+                  <p className="text-sm font-semibold text-purple-900">Focus</p>
+                  <p className="text-xs text-gray-600">Выделяемая часть</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-pink-50 rounded-lg p-5 border-2 border-pink-400">
+            <h3 className="font-bold text-pink-900 mb-3">
+              🎯 Основные типы Wh-cleft:
+            </h3>
+            <div className="space-y-3">
+              <div className="bg-white rounded-lg p-4">
+                <p className="font-bold text-purple-700 mb-1">
+                  1. What-cleft (самый частый)
+                </p>
+                <code className="text-sm text-purple-900">
+                  What I need is rest.
+                </code>
+                <p className="text-xs text-gray-600 mt-1">
+                  Акцент на том, что нужно
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-4">
+                <p className="font-bold text-purple-700 mb-1">2. Where-cleft</p>
+                <code className="text-sm text-purple-900">
+                  Where I live is London.
+                </code>
+                <p className="text-xs text-gray-600 mt-1">Акцент на месте</p>
+              </div>
+              <div className="bg-white rounded-lg p-4">
+                <p className="font-bold text-purple-700 mb-1">3. When-cleft</p>
+                <code className="text-sm text-purple-900">
+                  When I met her was in 2020.
+                </code>
+                <p className="text-xs text-gray-600 mt-1">Акцент на времени</p>
+              </div>
+              <div className="bg-white rounded-lg p-4">
+                <p className="font-bold text-purple-700 mb-1">
+                  4. The thing/person that...
+                </p>
+                <code className="text-sm text-purple-900">
+                  The thing that annoys me is lateness.
+                </code>
+                <p className="text-xs text-gray-600 mt-1">
+                  Альтернатива What-cleft
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="📚 Примеры Wh-cleft sentences">
+        <div className="space-y-4">
+          {[
+            {
+              type: "What-cleft",
+              normal: "I need a holiday.",
+              cleft: "What I need is a holiday.",
+              explanation: "Акцент на том, что именно нужен отпуск",
+              color: "purple",
+              emoji: "🏖️",
+            },
+            {
+              type: "What-cleft (действие)",
+              normal: "She said something rude.",
+              cleft: "What she said was rude.",
+              explanation: "Акцент на содержании того, что она сказала",
+              color: "violet",
+              emoji: "💬",
+            },
+            {
+              type: "Where-cleft",
+              normal: "We met in the park.",
+              cleft: "Where we met was in the park.",
+              explanation: "Акцент на месте встречи",
+              color: "pink",
+              emoji: "🌳",
+            },
+            {
+              type: "When-cleft",
+              normal: "The problem started yesterday.",
+              cleft: "When the problem started was yesterday.",
+              explanation: "Акцент на времени начала проблемы",
+              color: "fuchsia",
+              emoji: "📅",
+            },
+            {
+              type: "Why-cleft",
+              normal: "I left because of the noise.",
+              cleft: "Why I left was because of the noise.",
+              explanation: "Акцент на причине ухода",
+              color: "rose",
+              emoji: "🔊",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className={`bg-white rounded-lg p-6 border-2 border-${item.color}-200`}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">{item.emoji}</span>
+                <h4 className="font-bold text-gray-800 text-lg">{item.type}</h4>
+              </div>
+              <div className="space-y-3">
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-gray-400">
+                  <p className="text-xs font-semibold text-gray-600 mb-1">
+                    Обычное предложение
+                  </p>
+                  <p className="text-gray-800">{item.normal}</p>
+                </div>
+                <div
+                  className={`bg-${item.color}-50 rounded-lg p-4 border-l-4 border-${item.color}-500`}
+                >
+                  <p
+                    className={`text-xs font-semibold text-${item.color}-700 mb-1`}
+                  >
+                    Wh-cleft (с акцентом)
+                  </p>
+                  <p className="text-gray-800 font-bold text-lg mb-2">
+                    {item.cleft}
+                  </p>
+                  <p className="text-sm text-gray-600 italic">
+                    💡 {item.explanation}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+
+      <UiSection title="📘 Словарь: Вопросительные слова">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {[
+            {
+              word: "what",
+              transcr: "/wɒt/",
+              translation: "что",
+            },
+            {
+              word: "where",
+              transcr: "/weə(r)/",
+              translation: "где",
+            },
+            {
+              word: "when",
+              transcr: "/wen/",
+              translation: "когда",
+            },
+            {
+              word: "why",
+              transcr: "/waɪ/",
+              translation: "почему",
+            },
+            {
+              word: "how",
+              transcr: "/haʊ/",
+              translation: "как",
+            },
+            {
+              word: "who",
+              transcr: "/huː/",
+              translation: "кто",
+            },
+            {
+              word: "which",
+              transcr: "/wɪtʃ/",
+              translation: "который",
+            },
+            {
+              word: "the thing that",
+              transcr: "/ðə θɪŋ ðæt/",
+              translation: "то, что",
+            },
+            {
+              word: "the reason why",
+              transcr: "/ðə ˈriːzn waɪ/",
+              translation: "причина, по которой",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-lg p-4 border-l-4 border-purple-400"
+            >
+              <p className="font-bold text-purple-900 text-lg">{item.word}</p>
+              <p className="text-xs text-purple-600 mb-1">{item.transcr}</p>
+              <p className="text-sm text-zinc-800">{item.translation}</p>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 5: Wh-cleft — Практика ========== */
+function Step5() {
+  const items: FillItem[] = [
+    {
+      left: "1. Normal: I want a new phone. → Cleft:",
+      right: "I want is a new phone. (акцент на телефоне)",
+      answers: ["What", "what"],
+      explanation: "What I want is... — акцент на том, что хочу",
+      wide: true,
+    },
+    {
+      left: "2. Normal: She lives in Paris. → Cleft: Where she",
+      right: "is Paris. (акцент на городе)",
+      answers: ["lives"],
+      explanation: "Where she lives is... — акцент на месте жительства",
+      wide: true,
+    },
+    {
+      left: "3. Normal: The meeting starts at 9am. → Cleft:",
+      right: "the meeting starts is at 9am.",
+      answers: ["When", "when"],
+      explanation: "When the meeting starts is... — акцент на времени начала",
+      wide: true,
+    },
+    {
+      left: "4. Normal: I need help. → Cleft: What I",
+      right: "is help. (акцент на помощи)",
+      answers: ["need"],
+      explanation: "What I need is... — акцент на потребности в помощи",
+      wide: true,
+    },
+    {
+      left: "5. Normal: She's angry because you lied. → Cleft:",
+      right: "she's angry is because you lied.",
+      answers: ["Why", "why"],
+      explanation: "Why she's angry is... — акцент на причине злости",
+      wide: true,
+    },
+    {
+      left: "6. Normal: I like the design. → Cleft: What I",
+      right: "is the design. (акцент на дизайне)",
+      answers: ["like"],
+      explanation: "What I like is... — акцент на том, что нравится",
+      wide: true,
+    },
+    {
+      left: "7. Normal: They arrived yesterday. → Cleft: When they arrived",
+      right: "yesterday.",
+      answers: ["was"],
+      explanation: "When they arrived was... — акцент на времени прибытия",
+      wide: true,
+    },
+    {
+      left: "8. Normal: She does yoga to relax. → Cleft:",
+      right: "she does yoga is to relax.",
+      answers: ["Why", "why"],
+      explanation: "Why she does yoga is... — акцент на причине занятий йогой",
+      wide: true,
+    },
+  ];
+
+  return (
+    <>
+      <CheckableExercise
+        title="✏️ Упражнение: Wh-cleft sentences"
+        items={items}
+      />
+
+      <UiSection title="💡 What I want vs The thing I want">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-300">
+          <h3 className="font-bold text-purple-900 mb-4 text-center">
+            Два способа сказать одно и то же
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white rounded-lg p-5 border-2 border-purple-300">
+              <h4 className="font-bold text-purple-700 mb-3">
+                🟣 What + clause
+              </h4>
+              <p className="text-sm text-gray-700 mb-3">
+                Более распространённый, естественный вариант
+              </p>
+              <div className="bg-purple-50 rounded p-4">
+                <p className="font-semibold text-gray-800 mb-1">
+                  <strong>What I need</strong> is rest.
+                </p>
+                <p className="text-xs text-gray-600">
+                  То, что мне нужно — это отдых.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-5 border-2 border-pink-300">
+              <h4 className="font-bold text-pink-700 mb-3">
+                🌸 The thing that + clause
+              </h4>
+              <p className="text-sm text-gray-700 mb-3">
+                Более формальный, менее частый вариант
+              </p>
+              <div className="bg-pink-50 rounded p-4">
+                <p className="font-semibold text-gray-800 mb-1">
+                  <strong>The thing that I need</strong> is rest.
+                </p>
+                <p className="text-xs text-gray-600">
+                  Та вещь, которая мне нужна — это отдых.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 bg-white rounded-lg p-4">
+            <p className="text-sm text-gray-700 text-center">
+              💡 <strong>Совет:</strong> В разговорной речи чаще используется
+              <strong> What + clause</strong>, но оба варианта корректны!
+            </p>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 6: It-cleft vs Wh-cleft — Сравнение ========== */
+function Step6() {
+  const [selectedType, setSelectedType] = useState(0);
+
+  const comparisons = [
+    {
+      situation: "Нужен отдых",
+      itCleft: "It's rest that I need.",
+      whCleft: "What I need is rest.",
+      difference: "It-cleft более формальный, Wh-cleft более естественный",
+    },
+    {
+      situation: "Джон разбил окно",
+      itCleft: "It was John who broke the window.",
+      whCleft: "The person who broke the window was John.",
+      difference: "It-cleft короче и чаще используется",
+    },
+    {
+      situation: "Хочу новую работу",
+      itCleft: "It's a new job that I want.",
+      whCleft: "What I want is a new job.",
+      difference: "Wh-cleft звучит более разговорно",
+    },
+  ];
+
+  const current = comparisons[selectedType];
+
+  return (
+    <>
+      <UiSection title="⚖️ It-cleft vs Wh-cleft — В чем разница?">
+        <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-lg p-8 mb-6 border-2 border-purple-300">
+          <div className="text-center mb-6">
+            <div className="text-6xl mb-3">🤔</div>
+            <h2 className="text-2xl font-bold text-purple-900 mb-2">
+              Когда использовать каждый тип?
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="bg-blue-100 rounded-lg p-6 border-2 border-blue-400">
+              <h3 className="font-bold text-blue-900 text-lg mb-3 flex items-center gap-2">
+                <span>🔵</span>
+                <span>It-cleft</span>
+              </h3>
+              <ul className="space-y-2 text-sm text-gray-800">
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Более <strong>формальный</strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Часто в <strong>письменной речи</strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>Универсальный (любой элемент)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Лучше для <strong>коррекции ошибок</strong>
+                  </span>
+                </li>
+              </ul>
+              <div className="bg-white rounded p-4 mt-4">
+                <p className="font-mono text-blue-700 text-sm">
+                  It + be + [focus] + that/who
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-purple-100 rounded-lg p-6 border-2 border-purple-400">
+              <h3 className="font-bold text-purple-900 text-lg mb-3 flex items-center gap-2">
+                <span>🟣</span>
+                <span>Wh-cleft</span>
+              </h3>
+              <ul className="space-y-2 text-sm text-gray-800">
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Более <strong>разговорный</strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Часто в <strong>устной речи</strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Акцент на <strong>желаниях/потребностях</strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>✓</span>
+                  <span>
+                    Звучит более <strong>естественно</strong>
+                  </span>
+                </li>
+              </ul>
+              <div className="bg-white rounded p-4 mt-4">
+                <p className="font-mono text-purple-700 text-sm">
+                  What/Where/When + clause + be
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="🎭 Интерактивное сравнение">
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border-2 border-purple-300">
+          <h4 className="text-lg font-bold text-gray-800 mb-4 text-center">
+            Выберите ситуацию для сравнения
+          </h4>
+
+          <div className="flex gap-2 mb-6 justify-center flex-wrap">
+            {comparisons.map((comp, idx) => (
+              <button
+                key={idx}
+                onClick={() => setSelectedType(idx)}
+                className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                  selectedType === idx
+                    ? "bg-purple-600 text-white scale-105"
+                    : "bg-white text-gray-700 hover:bg-purple-100"
+                }`}
+              >
+                {comp.situation}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-blue-100 p-5 rounded-xl border-2 border-blue-300">
+              <div className="text-sm font-semibold text-blue-600 mb-2">
+                🔵 IT-CLEFT
+              </div>
+              <p className="text-lg font-semibold text-gray-800 mb-2">
+                {current.itCleft}
+              </p>
+            </div>
+
+            <div className="bg-purple-100 p-5 rounded-xl border-2 border-purple-300">
+              <div className="text-sm font-semibold text-purple-600 mb-2">
+                🟣 WH-CLEFT
+              </div>
+              <p className="text-lg font-semibold text-gray-800 mb-2">
+                {current.whCleft}
+              </p>
+            </div>
+
+            <div className="bg-white p-5 rounded-xl border-2 border-gray-300">
+              <p className="text-sm text-gray-700">
+                💡 <strong>Разница:</strong> {current.difference}
+              </p>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="📋 Быстрая справка">
+        <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-lg p-6 border-2 border-violet-300">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-violet-400">
+                  <th className="text-left p-4 font-bold text-violet-900">
+                    Критерий
+                  </th>
+                  <th className="text-left p-4 font-bold text-blue-900">
+                    It-cleft
+                  </th>
+                  <th className="text-left p-4 font-bold text-purple-900">
+                    Wh-cleft
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 bg-white">
+                  <td className="p-4 font-semibold text-gray-700">
+                    Формальность
+                  </td>
+                  <td className="p-4 text-gray-800">Более формальный</td>
+                  <td className="p-4 text-gray-800">Более разговорный</td>
+                </tr>
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <td className="p-4 font-semibold text-gray-700">
+                    Использование
+                  </td>
+                  <td className="p-4 text-gray-800">Письменная речь</td>
+                  <td className="p-4 text-gray-800">Устная речь</td>
+                </tr>
+                <tr className="border-b border-gray-200 bg-white">
+                  <td className="p-4 font-semibold text-gray-700">Лучше для</td>
+                  <td className="p-4 text-gray-800">Коррекции ошибок</td>
+                  <td className="p-4 text-gray-800">Желаний, потребностей</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="p-4 font-semibold text-gray-700">Пример</td>
+                  <td className="p-4 text-gray-800 text-xs">
+                    It was John who did it.
+                  </td>
+                  <td className="p-4 text-gray-800 text-xs">
+                    What I need is rest.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 7: Mixed Practice — Выбор типа ========== */
+function Step7() {
+  const items: FillItem[] = [
+    {
+      left: "1. (коррекция: Именно Мария позвонила)",
+      right: "was Maria who called. (It-cleft)",
+      answers: ["It", "it"],
+      explanation: "It was Maria who... — исправляем, кто именно позвонил",
+      wide: true,
+    },
+    {
+      left: "2. (желание: Что мне нужно — это отдых)",
+      right: "I need is rest. (Wh-cleft)",
+      answers: ["What", "what"],
+      explanation: "What I need is... — выражаем потребность",
+      wide: true,
+    },
+    {
+      left: "3. (акцент на месте: Именно в Лондоне мы встретились)",
+      right: "was in London that we met. (It-cleft)",
+      answers: ["It", "it"],
+      explanation: "It was in London that... — акцент на городе",
+      wide: true,
+    },
+    {
+      left: "4. (причина: Почему я ушел — из-за шума)",
+      right: "I left was because of the noise. (Wh-cleft)",
+      answers: ["Why", "why"],
+      explanation: "Why I left was... — объясняем причину",
+      wide: true,
+    },
+    {
+      left: "5. (коррекция: Именно вчера это случилось)",
+      right: "was yesterday that it happened. (It-cleft)",
+      answers: ["It", "it"],
+      explanation: "It was yesterday that... — исправляем время события",
+      wide: true,
+    },
+    {
+      left: "6. (желание: Чего я хочу — это понимания)",
+      right: "I want is understanding. (Wh-cleft)",
+      answers: ["What", "what"],
+      explanation: "What I want is... — выражаем желание",
+      wide: true,
+    },
+  ];
+
+  return (
+    <>
+      <CheckableExercise
+        title="✏️ Смешанная практика: It-cleft или Wh-cleft?"
+        items={items}
+      />
+
+      <UiSection title="💡 Подсказка: Как выбрать?">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-300">
+            <h3 className="font-bold text-blue-900 text-lg mb-3">
+              🔵 Используй It-cleft, когда:
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-800">
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Исправляешь ошибку или недопонимание</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Выделяешь конкретного человека</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Акцент на времени или месте</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Пишешь формальный текст</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-purple-50 rounded-lg p-6 border-2 border-purple-300">
+            <h3 className="font-bold text-purple-900 text-lg mb-3">
+              🟣 Используй Wh-cleft, когда:
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-800">
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Говоришь о желаниях или потребностях</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Объясняешь причину (Why...)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Разговорная речь</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span>→</span>
+                <span>Звучит более естественно и живо</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 8: All that-cleft (The thing that...) ========== */
+function Step8() {
+  return (
+    <>
+      <UiSection title="📦 All that / The thing that — Альтернатива Wh-cleft">
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-8 mb-6 border-2 border-amber-300">
+          <div className="text-center mb-6">
+            <div className="text-6xl mb-3">📦</div>
+            <h2 className="text-2xl font-bold text-amber-900">
+              All that / The thing that / The reason why
+            </h2>
+            <p className="text-amber-700 mt-2">
+              Более конкретные альтернативы What-cleft
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 mb-4">
+            <h3 className="font-bold text-amber-900 text-lg mb-3">
+              📖 Варианты:
+            </h3>
+            <div className="space-y-3">
+              <div className="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500">
+                <p className="font-bold text-amber-700 mb-2">
+                  1. All (that) + clause
+                </p>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Значение:</strong> Всё, что...
+                </p>
+                <p className="text-gray-800 font-semibold">
+                  All I want is peace.
+                </p>
+                <p className="text-xs text-gray-600">
+                  Всё, что я хочу — это мир.
+                </p>
+              </div>
+
+              <div className="bg-orange-50 rounded-lg p-4 border-l-4 border-orange-500">
+                <p className="font-bold text-orange-700 mb-2">
+                  2. The thing (that) + clause
+                </p>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Значение:</strong> То, что... (более формально)
+                </p>
+                <p className="text-gray-800 font-semibold">
+                  The thing that bothers me is the noise.
+                </p>
+                <p className="text-xs text-gray-600">
+                  То, что меня беспокоит — это шум.
+                </p>
+              </div>
+
+              <div className="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-500">
+                <p className="font-bold text-yellow-700 mb-2">
+                  3. The reason (why) + clause
+                </p>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Значение:</strong> Причина, по которой...
+                </p>
+                <p className="text-gray-800 font-semibold">
+                  The reason I'm here is to help you.
+                </p>
+                <p className="text-xs text-gray-600">
+                  Причина, по которой я здесь — помочь тебе.
+                </p>
+              </div>
+
+              <div className="bg-red-50 rounded-lg p-4 border-l-4 border-red-500">
+                <p className="font-bold text-red-700 mb-2">
+                  4. The place (where) + clause
+                </p>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Значение:</strong> Место, где...
+                </p>
+                <p className="text-gray-800 font-semibold">
+                  The place where I grew up is London.
+                </p>
+                <p className="text-xs text-gray-600">
+                  Место, где я вырос — это Лондон.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="📚 Примеры с разными конструкциями">
+        <div className="space-y-4">
+          {[
+            {
+              type: "All I want...",
+              example: "All I want for my birthday is a book.",
+              ru: "Всё, что я хочу на день рождения — это книгу.",
+              equivalent: "= What I want for my birthday is a book.",
+            },
+            {
+              type: "The thing that...",
+              example: "The thing that surprises me most is his honesty.",
+              ru: "То, что удивляет меня больше всего — это его честность.",
+              equivalent: "= What surprises me most is his honesty.",
+            },
+            {
+              type: "The reason why...",
+              example: "The reason why I called is to apologize.",
+              ru: "Причина, по которой я позвонил — извиниться.",
+              equivalent: "= Why I called is to apologize.",
+            },
+            {
+              type: "The person who...",
+              example: "The person who helped me was my teacher.",
+              ru: "Человек, который помог мне — мой учитель.",
+              equivalent: "= It was my teacher who helped me.",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-lg p-6 border-2 border-amber-200"
+            >
+              <h4 className="font-bold text-amber-800 mb-3">{item.type}</h4>
+              <div className="bg-amber-50 rounded-lg p-4 mb-3 border-l-4 border-amber-500">
+                <p className="font-semibold text-gray-800 mb-1">
+                  {item.example}
+                </p>
+                <p className="text-sm text-gray-600">{item.ru}</p>
+              </div>
+              <div className="bg-gray-50 rounded p-3">
+                <p className="text-xs text-gray-600 mb-1">💡 Эквивалент:</p>
+                <p className="text-sm text-gray-700 font-mono">
+                  {item.equivalent}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+
+      <UiSection title="📘 Словарь: Конструкции с that">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {[
+            {
+              word: "all that",
+              transcr: "/ɔːl ðæt/",
+              translation: "всё, что",
+            },
+            {
+              word: "the thing that",
+              transcr: "/ðə θɪŋ ðæt/",
+              translation: "то, что (вещь)",
+            },
+            {
+              word: "the reason why",
+              transcr: "/ðə ˈriːzn waɪ/",
+              translation: "причина, почему",
+            },
+            {
+              word: "the place where",
+              transcr: "/ðə pleɪs weə(r)/",
+              translation: "место, где",
+            },
+            {
+              word: "the person who",
+              transcr: "/ðə ˈpɜːsn huː/",
+              translation: "человек, который",
+            },
+            {
+              word: "the time when",
+              transcr: "/ðə taɪm wen/",
+              translation: "время, когда",
+            },
+            {
+              word: "the way (that)",
+              transcr: "/ðə weɪ ðæt/",
+              translation: "способ, которым",
+            },
+            {
+              word: "everything that",
+              transcr: "/ˈevrɪθɪŋ ðæt/",
+              translation: "всё, что",
+            },
+            {
+              word: "something that",
+              transcr: "/ˈsʌmθɪŋ ðæt/",
+              translation: "что-то, что",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-lg p-4 border-l-4 border-amber-400"
+            >
+              <p className="font-bold text-amber-900 text-lg">{item.word}</p>
+              <p className="text-xs text-amber-600 mb-1">{item.transcr}</p>
+              <p className="text-sm text-zinc-800">{item.translation}</p>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 9: Практика — All that / The thing that ========== */
+function Step9() {
+  const items: FillItem[] = [
+    {
+      left: "1.",
+      right: "I need is some time alone. (всё, что мне нужно)",
+      answers: ["All", "all"],
+      explanation: "All I need is... — всё, что нужно",
+      wide: true,
+    },
+    {
+      left: "2. The",
+      right: "that annoys me is his attitude. (то, что раздражает)",
+      answers: ["thing"],
+      explanation: "The thing that annoys me... — то, что раздражает",
+      wide: true,
+    },
+    {
+      left: "3. The reason",
+      right: "I'm late is traffic. (причина опоздания)",
+      answers: ["why", ""],
+      explanation: "The reason why... — причина, по которой (why опционально)",
+      wide: true,
+    },
+    {
+      left: "4.",
+      right: "I remember is her smile. (всё, что помню)",
+      answers: ["All", "all"],
+      explanation: "All I remember is... — всё, что помню",
+      wide: true,
+    },
+    {
+      left: "5. The",
+      right: "where we first met is this café. (место встречи)",
+      answers: ["place"],
+      explanation: "The place where... — место, где",
+      wide: true,
+    },
+    {
+      left: "6. The person",
+      right: "helped me was a stranger. (человек, который помог)",
+      answers: ["who"],
+      explanation: "The person who... — человек, который",
+      wide: true,
+    },
+    {
+      left: "7. The",
+      right: "that worries me most is his health. (то, что беспокоит)",
+      answers: ["thing"],
+      explanation: "The thing that worries... — то, что беспокоит",
+      wide: true,
+    },
+    {
+      left: "8.",
+      right: "she wants is to be happy. (всё, что она хочет)",
+      answers: ["All", "all"],
+      explanation: "All she wants is... — всё, что она хочет",
+      wide: true,
+    },
+  ];
+
+  return (
+    <>
+      <CheckableExercise
+        title="✏️ Упражнение: All that / The thing that"
+        items={items}
+      />
+
+      <UiSection title="💡 Когда опускать that/why/where?">
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 p-6 rounded-xl border-2 border-amber-300">
+          <h3 className="font-bold text-amber-900 mb-4 text-center">
+            Можно опустить связку в разговорной речи
+          </h3>
+          <div className="space-y-4">
+            <div className="bg-white rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-2xl">✅</span>
+                <h4 className="font-bold text-green-700">
+                  С that (полная форма)
+                </h4>
+              </div>
+              <p className="text-gray-800 mb-1">
+                All <strong>that</strong> I want is peace.
+              </p>
+              <p className="text-gray-800">
+                The thing <strong>that</strong> I like is music.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-2xl">✅</span>
+                <h4 className="font-bold text-green-700">
+                  Без that (разговорная)
+                </h4>
+              </div>
+              <p className="text-gray-800 mb-1">All I want is peace.</p>
+              <p className="text-gray-800">The thing I like is music.</p>
+            </div>
+
+            <div className="bg-amber-50 rounded-lg p-4 mt-4">
+              <p className="text-sm text-gray-700 text-center">
+                💡 <strong>Совет:</strong> В разговорной речи "that" часто
+                опускается. Оба варианта правильные!
+              </p>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 10: Advanced Practice — Комплексные предложения ========== */
+function Step10() {
+  const items: FillItem[] = [
+    {
+      left: "1. (коррекция + акцент на времени) Normal: The problem started last week. → Cleft:",
+      right: "was last week that the problem started.",
+      answers: ["It", "it"],
+      explanation:
+        "It was last week that... — акцент на времени начала проблемы",
+      wide: true,
+    },
+    {
+      left: "2. (желание + потребность) Normal: I need your support. → Cleft:",
+      right: "I need is your support.",
+      answers: ["What", "what"],
+      explanation: "What I need is... — выражаем потребность",
+      wide: true,
+    },
+    {
+      left: "3. (All + акцент на простоте) Normal: I just want peace. → Cleft:",
+      right: "I want is peace.",
+      answers: ["All", "all"],
+      explanation:
+        "All I want is... — подчеркиваем, что больше ничего не нужно",
+      wide: true,
+    },
+    {
+      left: "4. (коррекция человека) Normal: Tom broke the vase, not Sarah. → Cleft: It",
+      right: "Tom who broke the vase, not Sarah.",
+      answers: ["was"],
+      explanation: "It was Tom who... — исправляем, кто именно виноват",
+      wide: true,
+    },
+    {
+      left: "5. (причина) Normal: I quit because of stress. → Cleft: The",
+      right: "I quit was because of stress.",
+      answers: ["reason", "reason why"],
+      explanation: "The reason (why) I quit was... — объясняем причину ухода",
+      wide: true,
+    },
+    {
+      left: "6. (место + акцент) Normal: We found the key in the drawer. → Cleft:",
+      right: "was in the drawer that we found the key.",
+      answers: ["It", "it"],
+      explanation: "It was in the drawer that... — акцент на месте находки",
+      wide: true,
+    },
+    {
+      left: "7. (действие) Normal: She said something important. → Cleft:",
+      right: "she said was important.",
+      answers: ["What", "what"],
+      explanation: "What she said was... — акцент на содержании сказанного",
+      wide: true,
+    },
+    {
+      left: "8. (The thing + раздражение) Normal: His rudeness bothers me. → Cleft: The",
+      right: "that bothers me is his rudeness.",
+      answers: ["thing"],
+      explanation:
+        "The thing that bothers me... — выделяем источник раздражения",
+      wide: true,
+    },
+    {
+      left: "9. (место проживания) Normal: She lives in Paris. → Cleft:",
+      right: "she lives is Paris.",
+      answers: ["Where", "where"],
+      explanation: "Where she lives is... — акцент на городе проживания",
+      wide: true,
+    },
+    {
+      left: "10. (человек + The person) Normal: My brother taught me guitar. → Cleft: The",
+      right: "who taught me guitar was my brother.",
+      answers: ["person"],
+      explanation: "The person who taught me... — выделяем, кто именно научил",
+      wide: true,
+    },
+  ];
+
+  return (
+    <>
+      <CheckableExercise
+        title="🎯 Продвинутая практика: Комплексные Cleft Sentences"
+        items={items}
+      />
+
+      <UiSection title="💡 Стратегия выбора конструкции">
+        <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-lg p-6 border-2 border-violet-300">
+          <h3 className="font-bold text-violet-900 mb-4 text-center text-xl">
+            Алгоритм выбора Cleft конструкции
+          </h3>
+          <div className="space-y-3">
+            <div className="bg-blue-100 rounded-lg p-4 border-l-4 border-blue-500">
+              <p className="font-bold text-blue-900 mb-2">
+                1️⃣ Исправляешь ошибку или недопонимание?
+              </p>
+              <p className="text-sm text-gray-700">
+                → Используй <strong>It-cleft</strong>
+              </p>
+              <p className="text-xs text-gray-600 italic mt-1">
+                Пример: It was John (not Tom) who did it.
+              </p>
+            </div>
+
+            <div className="bg-purple-100 rounded-lg p-4 border-l-4 border-purple-500">
+              <p className="font-bold text-purple-900 mb-2">
+                2️⃣ Говоришь о желаниях или потребностях?
+              </p>
+              <p className="text-sm text-gray-700">
+                → Используй <strong>What-cleft</strong> или{" "}
+                <strong>All I want...</strong>
+              </p>
+              <p className="text-xs text-gray-600 italic mt-1">
+                Пример: What I need is rest. / All I want is peace.
+              </p>
+            </div>
+
+            <div className="bg-pink-100 rounded-lg p-4 border-l-4 border-pink-500">
+              <p className="font-bold text-pink-900 mb-2">
+                3️⃣ Объясняешь причину?
+              </p>
+              <p className="text-sm text-gray-700">
+                → Используй <strong>Why-cleft</strong> или{" "}
+                <strong>The reason why...</strong>
+              </p>
+              <p className="text-xs text-gray-600 italic mt-1">
+                Пример: Why I left was because of you. / The reason I'm here
+                is...
+              </p>
+            </div>
+
+            <div className="bg-amber-100 rounded-lg p-4 border-l-4 border-amber-500">
+              <p className="font-bold text-amber-900 mb-2">
+                4️⃣ Выделяешь конкретное время или место?
+              </p>
+              <p className="text-sm text-gray-700">
+                → Используй <strong>It-cleft</strong>
+              </p>
+              <p className="text-xs text-gray-600 italic mt-1">
+                Пример: It was in 2020 that we met.
+              </p>
+            </div>
+
+            <div className="bg-green-100 rounded-lg p-4 border-l-4 border-green-500">
+              <p className="font-bold text-green-900 mb-2">
+                5️⃣ Нужна более формальная или разговорная речь?
+              </p>
+              <p className="text-sm text-gray-700">
+                → <strong>It-cleft</strong> (формально) vs{" "}
+                <strong>Wh-cleft</strong> (разговорно)
+              </p>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 11: Real Life ситуации ========== */
+function Step11() {
+  return (
+    <>
+      <UiSection title="🌍 Real Life: Cleft Sentences в жизни">
+        <div className="space-y-4">
+          {[
+            {
+              icon: "💼",
+              category: "На работе",
+              situation: "Обсуждение проблемы в проекте",
+              examples: [
+                {
+                  type: "It-cleft",
+                  text: "It was the budget that caused the delay, not the team.",
+                  ru: "Именно бюджет вызвал задержку, а не команда.",
+                  note: "Исправляем неверное представление",
+                },
+                {
+                  type: "What-cleft",
+                  text: "What we need is more time to test.",
+                  ru: "Что нам нужно — это больше времени для тестирования.",
+                  note: "Выражаем потребность команды",
+                },
+              ],
+            },
+            {
+              icon: "🏠",
+              category: "Дома",
+              situation: "Разговор с семьей",
+              examples: [
+                {
+                  type: "All I want",
+                  text: "All I want is some peace and quiet.",
+                  ru: "Всё, что я хочу — это тишина и покой.",
+                  note: "Простое желание отдохнуть",
+                },
+                {
+                  type: "It-cleft",
+                  text: "It was your brother who ate the last cookie!",
+                  ru: "Это твой брат съел последнее печенье!",
+                  note: "Выясняем, кто виноват",
+                },
+              ],
+            },
+            {
+              icon: "👥",
+              category: "С друзьями",
+              situation: "Планирование встречи",
+              examples: [
+                {
+                  type: "Where-cleft",
+                  text: "Where I want to meet is the new café downtown.",
+                  ru: "Где я хочу встретиться — это новое кафе в центре.",
+                  note: "Предлагаем конкретное место",
+                },
+                {
+                  type: "The reason",
+                  text: "The reason I can't come is I have to work.",
+                  ru: "Причина, по которой я не могу прийти — мне нужно работать.",
+                  note: "Объясняем причину отказа",
+                },
+              ],
+            },
+            {
+              icon: "📞",
+              category: "По телефону",
+              situation: "Обслуживание клиентов",
+              examples: [
+                {
+                  type: "It-cleft",
+                  text: "It was yesterday that we sent the package.",
+                  ru: "Именно вчера мы отправили посылку.",
+                  note: "Уточняем дату отправки",
+                },
+                {
+                  type: "What-cleft",
+                  text: "What I need from you is your order number.",
+                  ru: "Что мне нужно от вас — это номер заказа.",
+                  note: "Запрашиваем конкретную информацию",
+                },
+              ],
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-lg p-6 border-2 border-violet-200 hover:border-violet-400 transition"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <span className="text-4xl">{item.icon}</span>
+                <div className="flex-1">
+                  <h4 className="font-bold text-violet-900 text-lg">
+                    {item.category}
+                  </h4>
+                  <p className="text-sm text-violet-700">{item.situation}</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {item.examples.map((ex, i) => (
+                  <div
+                    key={i}
+                    className="bg-violet-50 rounded-lg p-4 border-l-4 border-violet-400"
+                  >
+                    <p className="text-xs font-semibold text-violet-600 mb-1">
+                      {ex.type}
+                    </p>
+                    <p className="font-semibold text-gray-800 text-sm mb-1">
+                      {ex.text}
+                    </p>
+                    <p className="text-xs text-gray-600 mb-2">{ex.ru}</p>
+                    <p className="text-xs text-violet-700 italic">
+                      💡 {ex.note}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </UiSection>
+    </>
+  );
+}
+
+/* ========== ШАГ 12: Финальный тест + Summary ========== */
+function Step12() {
+  const items: FillItem[] = [
+    {
+      left: "1. Исправление ошибки (человек): Normal: Mary solved the problem. → Cleft:",
+      right: "was Mary who solved the problem.",
+      answers: ["It", "it"],
+      explanation: "It was Mary who... — выделяем, кто решил проблему",
+      wide: true,
+    },
+    {
+      left: "2. Желание: Normal: I want honesty. → Cleft:",
+      right: "I want is honesty.",
+      answers: ["What", "what", "All", "all"],
+      explanation: "What/All I want is... — выражаем желание",
+      wide: true,
+    },
+    {
+      left: "3. Место: Normal: We met at the library. → Cleft: It",
+      right: "at the library that we met.",
+      answers: ["was"],
+      explanation: "It was at the library that... — акцент на месте встречи",
+      wide: true,
+    },
+    {
+      left: "4. Причина: Normal: I left because I was tired. → Cleft: The",
+      right: "I left was because I was tired.",
+      answers: ["reason", "reason why"],
+      explanation: "The reason (why) I left... — объясняем причину",
+      wide: true,
+    },
+    {
+      left: "5. Что раздражает: Normal: His attitude annoys me. → Cleft: The",
+      right: "that annoys me is his attitude.",
+      answers: ["thing"],
+      explanation: "The thing that annoys me... — что именно раздражает",
+      wide: true,
+    },
+    {
+      left: "6. Время: Normal: The accident happened at midnight. → Cleft:",
+      right: "was at midnight that the accident happened.",
+      answers: ["It", "it"],
+      explanation: "It was at midnight that... — акцент на времени",
+      wide: true,
+    },
+    {
+      left: "7. Место проживания: Normal: She lives in Tokyo. → Cleft:",
+      right: "she lives is Tokyo.",
+      answers: ["Where", "where"],
+      explanation: "Where she lives is... — где именно живет",
+      wide: true,
+    },
+    {
+      left: "8. Простое желание: Normal: I just want to sleep. → Cleft:",
+      right: "I want is to sleep.",
+      answers: ["All", "all"],
+      explanation: "All I want is... — только одно желание",
+      wide: true,
+    },
+    {
+      left: "9. Кто помог: Normal: A stranger helped me. → Cleft: The",
+      right: "who helped me was a stranger.",
+      answers: ["person"],
+      explanation: "The person who helped me... — кто именно помог",
+      wide: true,
+    },
+    {
+      left: "10. Что произошло: Normal: She won the prize. → Cleft:",
+      right: "happened was she won the prize.",
+      answers: ["What", "what"],
+      explanation: "What happened was... — что именно случилось",
+      wide: true,
+    },
+    {
+      left: "11. Исправление времени: Normal: No, it was Tuesday, not Monday. → Cleft:",
+      right: "was Tuesday (not Monday) that it happened.",
+      answers: ["It", "it"],
+      explanation: "It was Tuesday that... — исправляем день недели",
+      wide: true,
+    },
+    {
+      left: "12. Что нужно: Normal: We need more resources. → Cleft:",
+      right: "we need is more resources.",
+      answers: ["What", "what"],
+      explanation: "What we need is... — выражаем потребность",
+      wide: true,
+    },
+  ];
+
+  return (
+    <>
+      <CheckableExercise
+        title="🎯 Финальный тест: Cleft Sentences"
+        items={items}
+      />
+
+      <UiSection title="📋 Полная сводка Cleft Sentences">
+        <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-lg p-8 border-2 border-violet-300">
+          <h3 className="text-2xl font-bold text-violet-900 mb-6 text-center">
+            🎓 Все типы Cleft Sentences
+          </h3>
+
+          <div className="space-y-4">
+            <div className="bg-blue-100 p-5 rounded-xl border-l-4 border-blue-500">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-2xl">🔵</span>
+                <span className="font-bold text-blue-700 text-lg">
+                  It-cleft
+                </span>
+              </div>
+              <code className="text-blue-900 text-sm">
+                It + be + [focus] + that/who/which + [rest]
+              </code>
+              <p className="text-gray-700 mt-2 text-sm">
+                <strong>Когда:</strong> Исправления, акцент на
+                человеке/времени/месте, формальная речь
+              </p>
+              <p className="text-sm text-gray-600 mt-1 italic">
+                It was Sarah who called me yesterday.
+              </p>
+            </div>
+
+            <div className="bg-purple-100 p-5 rounded-xl border-l-4 border-purple-500">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-2xl">🟣</span>
+                <span className="font-bold text-purple-700 text-lg">
+                  What-cleft
+                </span>
+              </div>
+              <code className="text-purple-900 text-sm">
+                What + clause + be + [focus]
+              </code>
+              <p className="text-gray-700 mt-2 text-sm">
+                <strong>Когда:</strong> Желания, потребности, разговорная речь
+              </p>
+              <p className="text-sm text-gray-600 mt-1 italic">
+                What I need is rest.
+              </p>
+            </div>
+
+            <div className="bg-pink-100 p-5 rounded-xl border-l-4 border-pink-500">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-2xl">🌸</span>
+                <span className="font-bold text-pink-700 text-lg">
+                  Where/When/Why-cleft
+                </span>
+              </div>
+              <code className="text-pink-900 text-sm">
+                Where/When/Why + clause + be + [focus]
+              </code>
+              <p className="text-gray-700 mt-2 text-sm">
+                <strong>Когда:</strong> Акцент на месте, времени или причине
+              </p>
+              <p className="text-sm text-gray-600 mt-1 italic">
+                Where I live is London.
+              </p>
+            </div>
+
+            <div className="bg-amber-100 p-5 rounded-xl border-l-4 border-amber-500">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-2xl">📦</span>
+                <span className="font-bold text-amber-700 text-lg">
+                  All/The thing that...
+                </span>
+              </div>
+              <code className="text-amber-900 text-sm">
+                All/The thing/The reason + that/why + clause
+              </code>
+              <p className="text-gray-700 mt-2 text-sm">
+                <strong>Когда:</strong> Альтернатива What-cleft, чуть более
+                формально
+              </p>
+              <p className="text-sm text-gray-600 mt-1 italic">
+                All I want is peace. / The thing that bothers me is...
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-white p-5 rounded-xl border-2 border-violet-200">
+            <h4 className="font-bold text-gray-800 mb-3 text-center">
+              🎯 Главная цель Cleft Sentences
+            </h4>
+            <p className="text-gray-700 text-center">
+              Выделить <strong>конкретную часть информации</strong>, чтобы
+              сделать акцент, исправить ошибку или противопоставить одну вещь
+              другой.
+            </p>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection title="🎉 Поздравляем с завершением урока!">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8 border-2 border-green-300 text-center">
+          <div className="text-7xl mb-4">🏆</div>
+          <h2 className="text-3xl font-bold text-green-900 mb-4">
+            Превосходная работа!
+          </h2>
+          <p className="text-lg text-gray-700 mb-6">
+            Вы завершили тему <strong>"Cleft Sentences"</strong> и теперь можете
+            выделять важную информацию и делать акценты профессионально!
+          </p>
+
+          <div className="bg-white rounded-lg p-6 mb-6">
+            <h3 className="font-bold text-green-900 mb-4 text-xl">
+              ✅ Что вы изучили:
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
+              {[
+                "It-cleft — акцент через It (формально)",
+                "Wh-cleft — акцент через What/Where/When (разговорно)",
+                "All I want / The thing that — альтернативы",
+                "Выбор между разными типами cleft",
+                "Коррекция ошибок и недопониманий",
+                "Выражение желаний и потребностей",
+                "Акцент на времени, месте, причине",
+                "60+ примеров в реальных ситуациях",
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 bg-green-50 rounded p-3"
+                >
+                  <span className="text-green-600 text-xl">✓</span>
+                  <span className="text-sm text-gray-800">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-violet-50 rounded-lg p-5 border-2 border-violet-300">
+            <p className="text-sm text-gray-700">
+              💡 <strong>Совет:</strong> Используйте Cleft Sentences, чтобы ваша
+              речь звучала более выразительно и точно передавала акценты!
+            </p>
+          </div>
+        </div>
+      </UiSection>
+    </>
+  );
+}

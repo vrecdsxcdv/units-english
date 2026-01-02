@@ -1,6 +1,14 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization to avoid build-time errors
+let resend: Resend | null = null;
+
+function getResendClient(): Resend {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resend;
+}
 
 export async function sendVerificationEmail(email: string, code: string) {
   // Используем верифицированный домен из env или дефолтный Resend домен
@@ -25,7 +33,7 @@ export async function sendVerificationEmail(email: string, code: string) {
   }
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResendClient().emails.send({
       from: fromEmail,
       to: [email],
       subject: 'Подтвердите ваш email - Units English',
@@ -105,7 +113,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'Units English <onboarding@resend.dev>';
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResendClient().emails.send({
       from: fromEmail,
       to: [email],
       subject: 'Восстановление пароля - Units English',

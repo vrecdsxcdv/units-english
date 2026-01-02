@@ -1,0 +1,356 @@
+{
+  "examples": [
+    {
+      "id": "a1-greeting-001",
+      "slug": "a1-greeting-001",
+      "version": "2.0",
+      "level": {
+        "cefr": "A1",
+        "ieltsBandMin": 1,
+        "ieltsBandMax": 2
+      },
+      "type": "multiple_choice",
+      "difficulty": 0.1,
+      "estimatedMinutes": 1,
+      "targetSkills": ["grammar", "vocabulary"],
+      "skillWeights": {
+        "grammar": 0.6,
+        "vocabulary": 0.4
+      },
+      "content": {
+        "instruction": "Выбери правильный вариант приветствия",
+        "context": "Ты встречаешь друга утром",
+        "question": "Как правильно поздороваться утром?",
+        "options": [
+          "Good morning!",
+          "Good night!",
+          "Good bye!",
+          "Good evening!"
+        ]
+      },
+      "expectedAnswer": {
+        "correct": "Good morning!",
+        "schema": {
+          "type": "string",
+          "format": "exact",
+          "caseSensitive": false
+        },
+        "explanation": "Good morning используется для приветствия утром (до 12:00). Good night - это прощание перед сном, Good bye - общее прощание, Good evening - вечернее приветствие."
+      },
+      "scoring": {
+        "method": "exact"
+      },
+      "feedbackTone": "encouraging",
+      "retryPolicy": {
+        "maxAttempts": 3,
+        "hintsAvailable": true,
+        "hintPenalty": 0.2,
+        "hints": [
+          "Подумай, какое слово связано с утром",
+          "Morning = утро"
+        ]
+      },
+      "tags": {
+        "topics": ["greetings", "daily_life"],
+        "interests": [],
+        "grammarPoints": [],
+        "vocabThemes": ["time_of_day", "greetings"]
+      },
+      "spacedRepetition": {
+        "conceptKey": "greetings_time_of_day",
+        "relatedConcepts": ["farewells", "polite_phrases"],
+        "prerequisiteConcepts": []
+      },
+      "createdAt": "2025-01-01T00:00:00Z",
+      "generatedBy": "template",
+      "templateId": "greeting-basic"
+    },
+    {
+      "id": "a2-past-simple-001",
+      "slug": "a2-past-simple-001",
+      "version": "2.0",
+      "level": {
+        "cefr": "A2",
+        "ieltsBandMin": 3,
+        "ieltsBandMax": 3
+      },
+      "type": "fill_blanks",
+      "difficulty": 0.25,
+      "estimatedMinutes": 2,
+      "targetSkills": ["grammar", "vocabulary"],
+      "skillWeights": {
+        "grammar": 0.8,
+        "vocabulary": 0.2
+      },
+      "content": {
+        "instruction": "Заполни пропуски глаголами в Past Simple",
+        "context": "Рассказ о вчерашнем дне",
+        "question": "Yesterday I ___ (go) to the shop and ___ (buy) some bread.",
+        "blanks": 2
+      },
+      "expectedAnswer": {
+        "correct": ["went", "bought"],
+        "schema": {
+          "type": "array",
+          "format": "exact",
+          "caseSensitive": false,
+          "acceptableVariants": ["went", "bought"]
+        },
+        "explanation": "Go -> went (неправильный глагол). Buy -> bought (неправильный глагол). В Past Simple неправильные глаголы меняют форму, их нужно запоминать."
+      },
+      "scoring": {
+        "method": "partial",
+        "partialCreditRules": [
+          {"rule": "one_correct", "creditPercent": 50},
+          {"rule": "both_correct", "creditPercent": 100}
+        ]
+      },
+      "feedbackTone": "encouraging",
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "hintsAvailable": true,
+        "hintPenalty": 0.25,
+        "hints": [
+          "Оба глагола - неправильные (irregular verbs)",
+          "go-went-gone, buy-bought-bought"
+        ]
+      },
+      "tags": {
+        "topics": ["daily_routine", "shopping"],
+        "interests": [],
+        "grammarPoints": ["past_simple", "irregular_verbs"],
+        "vocabThemes": ["daily_activities"]
+      },
+      "spacedRepetition": {
+        "conceptKey": "past_simple_irregular",
+        "relatedConcepts": ["past_simple_regular", "present_perfect"],
+        "prerequisiteConcepts": ["present_simple"]
+      },
+      "createdAt": "2025-01-01T00:00:00Z",
+      "generatedBy": "template",
+      "templateId": "past-simple-fill"
+    },
+    {
+      "id": "b1-opinion-001",
+      "slug": "b1-opinion-001",
+      "version": "2.0",
+      "level": {
+        "cefr": "B1",
+        "ieltsBandMin": 4,
+        "ieltsBandMax": 5
+      },
+      "type": "free_response",
+      "difficulty": 0.45,
+      "estimatedMinutes": 5,
+      "targetSkills": ["writing", "grammar", "vocabulary"],
+      "skillWeights": {
+        "writing": 0.4,
+        "grammar": 0.35,
+        "vocabulary": 0.25
+      },
+      "content": {
+        "instruction": "Напиши короткий ответ (3-5 предложений) на английском",
+        "context": "Дискуссия о технологиях",
+        "question": "Do you think social media is good or bad for teenagers? Why?"
+      },
+      "expectedAnswer": {
+        "correct": "semantic_evaluation",
+        "schema": {
+          "type": "string",
+          "format": "semantic",
+          "minLength": 50,
+          "maxLength": 300
+        },
+        "explanation": "Хороший ответ должен: 1) Выразить мнение (I think/believe...), 2) Дать причину (because...), 3) Привести пример или развить мысль."
+      },
+      "scoring": {
+        "method": "rubric",
+        "rubric": [
+          {
+            "criterion": "Task completion",
+            "skillKey": "writing",
+            "maxPoints": 3,
+            "levels": [
+              {"points": 1, "description": "Ответ не по теме или слишком короткий"},
+              {"points": 2, "description": "Ответ по теме, но без развития мысли"},
+              {"points": 3, "description": "Полный ответ с мнением и аргументом"}
+            ]
+          },
+          {
+            "criterion": "Grammar accuracy",
+            "skillKey": "grammar",
+            "maxPoints": 3,
+            "levels": [
+              {"points": 1, "description": "Много ошибок, затрудняющих понимание"},
+              {"points": 2, "description": "Есть ошибки, но смысл понятен"},
+              {"points": 3, "description": "Минимум ошибок, грамматика соответствует B1"}
+            ]
+          },
+          {
+            "criterion": "Vocabulary range",
+            "skillKey": "vocabulary",
+            "maxPoints": 2,
+            "levels": [
+              {"points": 1, "description": "Базовая лексика, повторы"},
+              {"points": 2, "description": "Разнообразная лексика по теме"}
+            ]
+          }
+        ]
+      },
+      "feedbackTone": "neutral",
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "hintsAvailable": true,
+        "hintPenalty": 0.15,
+        "hints": [
+          "Начни с: I think that social media is...",
+          "Используй связки: because, for example, however"
+        ]
+      },
+      "tags": {
+        "topics": ["technology", "social_media", "opinion"],
+        "interests": ["technology"],
+        "grammarPoints": ["present_simple", "opinion_expressions"],
+        "vocabThemes": ["technology", "social_issues"]
+      },
+      "spacedRepetition": {
+        "conceptKey": "opinion_writing_b1",
+        "relatedConcepts": ["argumentation", "linking_words"],
+        "prerequisiteConcepts": ["simple_sentences", "present_tenses"]
+      },
+      "createdAt": "2025-01-01T00:00:00Z",
+      "generatedBy": "template",
+      "templateId": "opinion-short"
+    },
+    {
+      "id": "b2-conditional-001",
+      "slug": "b2-conditional-001",
+      "version": "2.0",
+      "level": {
+        "cefr": "B2",
+        "ieltsBandMin": 5,
+        "ieltsBandMax": 6
+      },
+      "type": "error_correction",
+      "difficulty": 0.65,
+      "estimatedMinutes": 3,
+      "targetSkills": ["grammar", "comprehension"],
+      "skillWeights": {
+        "grammar": 0.7,
+        "comprehension": 0.3
+      },
+      "content": {
+        "instruction": "Найди и исправь ошибку в условном предложении",
+        "context": "Гипотетическая ситуация",
+        "question": "If I would have more time, I would learn to play the guitar.",
+        "text": "If I would have more time, I would learn to play the guitar."
+      },
+      "expectedAnswer": {
+        "correct": "If I had more time, I would learn to play the guitar.",
+        "schema": {
+          "type": "string",
+          "format": "semantic",
+          "acceptableVariants": [
+            "If I had more time, I would learn to play the guitar.",
+            "If I had more time I would learn to play the guitar"
+          ]
+        },
+        "explanation": "Second Conditional (нереальное условие в настоящем): If + Past Simple, would + infinitive. Нельзя использовать would в части с if. Правильно: If I HAD more time (не would have)."
+      },
+      "scoring": {
+        "method": "semantic",
+        "partialCreditRules": [
+          {"rule": "identified_error", "creditPercent": 30},
+          {"rule": "partial_correction", "creditPercent": 60},
+          {"rule": "full_correction", "creditPercent": 100}
+        ]
+      },
+      "feedbackTone": "neutral",
+      "retryPolicy": {
+        "maxAttempts": 2,
+        "hintsAvailable": true,
+        "hintPenalty": 0.2,
+        "hints": [
+          "Ошибка в первой части предложения (if-clause)",
+          "В Second Conditional после if используется Past Simple, не would"
+        ]
+      },
+      "tags": {
+        "topics": ["grammar_practice", "conditionals"],
+        "interests": [],
+        "grammarPoints": ["second_conditional", "would_usage"],
+        "vocabThemes": []
+      },
+      "spacedRepetition": {
+        "conceptKey": "second_conditional",
+        "relatedConcepts": ["first_conditional", "third_conditional", "mixed_conditionals"],
+        "prerequisiteConcepts": ["past_simple", "modal_would"]
+      },
+      "createdAt": "2025-01-01T00:00:00Z",
+      "generatedBy": "template",
+      "templateId": "error-correction-conditional"
+    },
+    {
+      "id": "c1-idiom-context-001",
+      "slug": "c1-idiom-context-001",
+      "version": "2.0",
+      "level": {
+        "cefr": "C1",
+        "ieltsBandMin": 7,
+        "ieltsBandMax": 8
+      },
+      "type": "situation_response",
+      "difficulty": 0.8,
+      "estimatedMinutes": 4,
+      "targetSkills": ["vocabulary", "comprehension", "slang"],
+      "skillWeights": {
+        "vocabulary": 0.4,
+        "comprehension": 0.35,
+        "slang": 0.25
+      },
+      "content": {
+        "instruction": "Прочитай ситуацию и выбери наиболее подходящую идиому",
+        "context": "Деловая встреча",
+        "question": "Your colleague has been working on a project for months, but the client suddenly cancelled it. He looks devastated. What idiom best describes his situation?",
+        "options": [
+          "He's back to square one.",
+          "He's barking up the wrong tree.",
+          "He's beating around the bush.",
+          "He's burning the midnight oil."
+        ]
+      },
+      "expectedAnswer": {
+        "correct": "He's back to square one.",
+        "schema": {
+          "type": "string",
+          "format": "exact"
+        },
+        "explanation": "Back to square one = вернуться к началу, все усилия потрачены впустую. Barking up the wrong tree = искать не там. Beating around the bush = ходить вокруг да около. Burning the midnight oil = работать допоздна."
+      },
+      "scoring": {
+        "method": "exact"
+      },
+      "feedbackTone": "challenging",
+      "retryPolicy": {
+        "maxAttempts": 1,
+        "hintsAvailable": false,
+        "hintPenalty": 0,
+        "hints": []
+      },
+      "tags": {
+        "topics": ["business", "idioms", "workplace"],
+        "interests": ["business"],
+        "grammarPoints": [],
+        "vocabThemes": ["idioms", "business_english"]
+      },
+      "spacedRepetition": {
+        "conceptKey": "idioms_setback",
+        "relatedConcepts": ["idioms_success", "idioms_effort", "business_idioms"],
+        "prerequisiteConcepts": ["basic_idioms"]
+      },
+      "createdAt": "2025-01-01T00:00:00Z",
+      "generatedBy": "template",
+      "templateId": "idiom-context"
+    }
+  ]
+}

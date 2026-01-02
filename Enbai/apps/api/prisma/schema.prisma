@@ -1,0 +1,399 @@
+// Prisma schema for Enbai English Learning Platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USER & AUTH
+// ============================================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  role          String    @default("user") // user, admin
+  emailVerified Boolean   @default(false) @map("email_verified")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  lastLoginAt   DateTime? @map("last_login_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  // Relations
+  profile           Profile?
+  skillVectors      SkillVector[]
+  assessments       Assessment[]
+  conversations     Conversation[]
+  messages          Message[]
+  tasks             Task[]
+  taskAttempts      TaskAttempt[]
+  audioSubmissions  AudioSubmission[]
+  recommendations   Recommendation[]
+  progressSnapshots ProgressSnapshot[]
+  refreshTokens     RefreshToken[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  tokenHash String   @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+// ============================================
+// PROFILE & SKILLS
+// ============================================
+
+model Profile {
+  id     String @id @default(uuid())
+  userId String @unique @map("user_id")
+
+  // Goals & Preferences
+  learningGoal        String?  @map("learning_goal") // travel, work, exams, academic, immigration, entertainment, general
+  targetLevel         String?  @map("target_level") // A1-C2
+  interests           String[] // array of interest tags
+  dailyTimeMinutes    Int      @default(15) @map("daily_time_minutes")
+  preferredDifficulty String   @default("adaptive") @map("preferred_difficulty") // easy, adaptive, challenging
+
+  // Notifications (JSON)
+  notificationPreferences Json @default("{}") @map("notification_preferences")
+
+  // Onboarding
+  onboardingCompleted   Boolean   @default(false) @map("onboarding_completed")
+  onboardingCompletedAt DateTime? @map("onboarding_completed_at")
+
+  timezone String @default("UTC")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model SkillVector {
+  id     String @id @default(uuid())
+  userId String @map("user_id")
+
+  // 10 core skills (0.0 - 1.0)
+  grammar       Decimal @default(0.5) @db.Decimal(4, 3)
+  vocabulary    Decimal @default(0.5) @db.Decimal(4, 3)
+  pronunciation Decimal @default(0.5) @db.Decimal(4, 3)
+  listening     Decimal @default(0.5) @db.Decimal(4, 3)
+  speaking      Decimal @default(0.5) @db.Decimal(4, 3)
+  slang         Decimal @default(0.5) @db.Decimal(4, 3)
+  wordFormation Decimal @default(0.5) @map("word_formation") @db.Decimal(4, 3)
+  fluency       Decimal @default(0.5) @db.Decimal(4, 3)
+  writing       Decimal @default(0.5) @db.Decimal(4, 3)
+  comprehension Decimal @default(0.5) @db.Decimal(4, 3)
+
+  // Meta skills
+  learningAbility Decimal @default(0.5) @map("learning_ability") @db.Decimal(4, 3)
+  confidence      Decimal @default(0.5) @db.Decimal(4, 3)
+
+  // Versioning
+  version           Int      @default(1)
+  calculatedAt      DateTime @default(now()) @map("calculated_at")
+  calculationMethod String?  @map("calculation_method") // onboarding, incremental, deep_analysis
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("skill_vectors")
+}
+
+// ============================================
+// ASSESSMENT & ONBOARDING
+// ============================================
+
+model Assessment {
+  id     String @id @default(uuid())
+  userId String @map("user_id")
+
+  type   String @default("onboarding") // onboarding, periodic, placement
+  status String @default("in_progress") // in_progress, completed, abandoned
+
+  questions            Json @default("[]") // Array of question objects
+  answers              Json @default("[]") // Array of answer objects
+  currentQuestionIndex Int  @default(0) @map("current_question_index")
+
+  startedAt   DateTime  @default(now()) @map("started_at")
+  completedAt DateTime? @map("completed_at")
+
+  rawScore      Decimal? @map("raw_score") @db.Decimal(5, 2)
+  initialVector Json?    @map("initial_vector")
+  aiAnalysis    Json?    @map("ai_analysis")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("assessments")
+}
+
+// ============================================
+// CHAT & CONVERSATIONS
+// ============================================
+
+model Conversation {
+  id     String @id @default(uuid())
+  userId String @map("user_id")
+
+  title  String?
+  status String  @default("active") // active, archived
+
+  messageCount Int @default(0) @map("message_count")
+  taskCount    Int @default(0) @map("task_count")
+
+  startedAt     DateTime  @default(now()) @map("started_at")
+  lastMessageAt DateTime? @map("last_message_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages Message[]
+  tasks    Task[]
+
+  @@index([userId])
+  @@index([userId, lastMessageAt(sort: Desc)])
+  @@map("conversations")
+}
+
+model Message {
+  id             String @id @default(uuid())
+  conversationId String @map("conversation_id")
+  userId         String @map("user_id")
+
+  role    String // user, assistant, system
+  content String @db.Text
+
+  hasTask Boolean @default(false) @map("has_task")
+  taskId  String? @map("task_id")
+
+  aiMetadata Json? @map("ai_metadata") // model, tokens, latency
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task         Task?        @relation(fields: [taskId], references: [id])
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+// ============================================
+// TASKS
+// ============================================
+
+model Task {
+  id             String  @id @default(uuid())
+  userId         String  @map("user_id")
+  conversationId String? @map("conversation_id")
+
+  // Task definition
+  templateId String @map("template_id")
+  type       String // grammar, vocabulary, speaking, etc.
+  difficulty Int    @db.SmallInt
+
+  // Content (JSON)
+  content          Json
+  uiHints          Json? @map("ui_hints")
+  evaluationRubric Json  @map("evaluation_rubric")
+  expectedAnswers  Json? @map("expected_answers")
+
+  // Objectives
+  objectives          String[]
+  targetSkills        String[] @map("target_skills")
+  expectedTimeSeconds Int?     @map("expected_time_seconds")
+
+  // Schema versioning
+  schemaVersion String @default("1.0") @map("schema_version")
+
+  // Status
+  status String @default("pending") // pending, in_progress, completed, skipped, expired
+
+  // Scheduling
+  scheduledFor DateTime? @map("scheduled_for")
+  expiresAt    DateTime? @map("expires_at")
+
+  generatedBy String @default("flash") @map("generated_by") // flash, deep_research, template
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation Conversation? @relation(fields: [conversationId], references: [id])
+  attempts     TaskAttempt[]
+  messages     Message[]
+
+  @@index([userId])
+  @@index([userId, status])
+  @@index([templateId])
+  @@map("tasks")
+}
+
+model TaskAttempt {
+  id     String @id @default(uuid())
+  taskId String @map("task_id")
+  userId String @map("user_id")
+
+  // User's answer (JSON)
+  answer Json
+
+  // For audio tasks
+  audioSubmissionId String? @map("audio_submission_id")
+
+  // Evaluation
+  isCorrect   Boolean? @map("is_correct")
+  score       Decimal? @db.Decimal(4, 3)
+  feedback    String?  @db.Text
+  mistakes    Json? // Array of mistake objects
+  skillDeltas Json?    @map("skill_deltas") // {"grammar": 0.02, "vocabulary": -0.01}
+
+  // AI metadata
+  evaluatedBy        String? @map("evaluated_by") // flash, deep_research, auto
+  evaluationMetadata Json?   @map("evaluation_metadata")
+
+  // Timing
+  startedAt        DateTime? @map("started_at")
+  submittedAt      DateTime  @default(now()) @map("submitted_at")
+  timeSpentSeconds Int?      @map("time_spent_seconds")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  task            Task             @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  audioSubmission AudioSubmission? @relation(fields: [audioSubmissionId], references: [id])
+
+  @@index([taskId])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("task_attempts")
+}
+
+// ============================================
+// MEDIA & AUDIO
+// ============================================
+
+model AudioSubmission {
+  id     String  @id @default(uuid())
+  userId String  @map("user_id")
+
+  // Storage
+  storageKey    String @map("storage_key")
+  storageBucket String @map("storage_bucket")
+
+  // Metadata
+  durationSeconds Decimal? @map("duration_seconds") @db.Decimal(6, 2)
+  fileSizeBytes   Int      @map("file_size_bytes")
+  mimeType        String   @map("mime_type")
+  sampleRate      Int?     @map("sample_rate")
+
+  // Processing
+  status                  String   @default("uploaded") // uploaded, processing, transcribed, processed, failed
+  transcription           String?  @db.Text
+  transcriptionConfidence Decimal? @map("transcription_confidence") @db.Decimal(4, 3)
+
+  // Pronunciation analysis
+  pronunciationScore   Decimal? @map("pronunciation_score") @db.Decimal(4, 3)
+  pronunciationDetails Json?    @map("pronunciation_details")
+
+  // Timing
+  uploadedAt  DateTime? @map("uploaded_at")
+  processedAt DateTime? @map("processed_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskAttempts TaskAttempt[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("audio_submissions")
+}
+
+// ============================================
+// ANALYTICS & RECOMMENDATIONS
+// ============================================
+
+model Recommendation {
+  id     String @id @default(uuid())
+  userId String @map("user_id")
+
+  type     String // daily_focus, weakness, task_suggestion, streak_alert, achievement
+  priority Int    @default(3) @db.SmallInt
+
+  content Json // { title, description, actionLabel?, actionUrl? }
+  reason  String?
+
+  targetSkills String[] @map("target_skills")
+
+  status      String    @default("active") // active, dismissed, completed
+  dismissedAt DateTime? @map("dismissed_at")
+
+  validFrom  DateTime  @default(now()) @map("valid_from")
+  validUntil DateTime? @map("valid_until")
+
+  generatedBy String @map("generated_by") // deep_research, analytics_engine
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@map("recommendations")
+}
+
+model ProgressSnapshot {
+  id     String @id @default(uuid())
+  userId String @map("user_id")
+
+  periodType String   @map("period_type") // daily, weekly, monthly
+  periodDate DateTime @map("period_date") @db.Date
+
+  // Stats
+  tasksCompleted   Int @default(0) @map("tasks_completed")
+  tasksCorrect     Int @default(0) @map("tasks_correct")
+  timeSpentMinutes Int @default(0) @map("time_spent_minutes")
+  streakDays       Int @default(0) @map("streak_days")
+
+  // Skill changes
+  skillVectorStart Json? @map("skill_vector_start")
+  skillVectorEnd   Json? @map("skill_vector_end")
+  skillDeltas      Json? @map("skill_deltas")
+
+  // Areas
+  strongestSkill    String? @map("strongest_skill")
+  weakestSkill      String? @map("weakest_skill")
+  mostImprovedSkill String? @map("most_improved_skill")
+
+  // AI insights
+  aiSummary         String? @map("ai_summary") @db.Text
+  aiRecommendations Json?   @map("ai_recommendations")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, periodType, periodDate])
+  @@index([userId, periodType, periodDate(sort: Desc)])
+  @@map("progress_snapshots")
+}

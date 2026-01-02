@@ -632,10 +632,10 @@ export default async function Page({ searchParams }: Props) {
         name="Intermediate English"
         description="Курс английского языка уровня B1 Intermediate: продвинутая грамматика, времена, модальные глаголы, условные предложения. Более 60 интерактивных уроков для среднего уровня."
       />
-      <div className="flex min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         <Sidebar activeTopic={t} level="b1" />
-        <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold mb-6">
+        <main className="p-4 md:p-6 pt-16">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
           Тема урока: <span className="text-indigo-600">{topicTitles[t]}</span>
         </h1>
 

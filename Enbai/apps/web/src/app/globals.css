@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Light blue/purple brutalist theme */
+    --background: 230 30% 96%;
+    --foreground: 245 60% 45%;
+    --card: 230 30% 98%;
+    --card-foreground: 245 60% 45%;
+    --popover: 230 30% 98%;
+    --popover-foreground: 245 60% 45%;
+    --primary: 245 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 70% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 230 25% 90%;
+    --muted-foreground: 245 30% 55%;
+    --accent: 200 90% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 245 40% 75%;
+    --input: 230 25% 92%;
+    --ring: 245 85% 55%;
+    --radius: 0;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  code, pre, .mono {
+    font-family: 'Space Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Brutalist button */
+  .btn-brutal {
+    @apply relative px-6 py-3 font-bold uppercase tracking-wider;
+    @apply border-2 border-foreground;
+    @apply transition-all duration-150;
+    @apply hover:translate-x-1 hover:-translate-y-1;
+    @apply hover:shadow-[4px_4px_0_0_hsl(var(--foreground))];
+    @apply active:translate-x-0 active:translate-y-0 active:shadow-none;
+  }
+
+  .btn-brutal-primary {
+    @apply btn-brutal bg-[hsl(var(--primary))] text-black;
+    @apply border-[hsl(var(--primary))];
+    @apply hover:shadow-[4px_4px_0_0_hsl(var(--primary))];
+  }
+
+  .btn-brutal-accent {
+    @apply btn-brutal bg-[hsl(var(--accent))] text-black;
+    @apply border-[hsl(var(--accent))];
+    @apply hover:shadow-[4px_4px_0_0_hsl(var(--accent))];
+  }
+
+  .btn-brutal-outline {
+    @apply btn-brutal bg-transparent text-foreground;
+    @apply border-foreground;
+  }
+
+  /* Brutalist card */
+  .card-brutal {
+    @apply border-2 border-foreground bg-card p-6;
+    @apply transition-all duration-150;
+  }
+
+  .card-brutal:hover {
+    @apply translate-x-1 -translate-y-1;
+    @apply shadow-[4px_4px_0_0_hsl(var(--foreground))];
+  }
+
+  /* Marquee text */
+  .marquee {
+    @apply overflow-hidden whitespace-nowrap;
+  }
+
+  .marquee-content {
+    @apply inline-block animate-marquee;
+  }
+
+  /* Glitch effect */
+  .glitch {
+    position: relative;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 hsl(var(--primary));
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  }
+
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 hsl(var(--secondary));
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+  }
+
+  /* Vertical text */
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* Noise overlay */
+  .noise {
+    position: relative;
+  }
+
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-stroke-sm {
+    -webkit-text-stroke: 1px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Animations */
+@keyframes glitch-anim-1 {
+  0% { clip: rect(30px, 9999px, 10px, 0); }
+  20% { clip: rect(70px, 9999px, 120px, 0); }
+  40% { clip: rect(50px, 9999px, 80px, 0); }
+  60% { clip: rect(10px, 9999px, 40px, 0); }
+  80% { clip: rect(90px, 9999px, 130px, 0); }
+  100% { clip: rect(20px, 9999px, 60px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(65px, 9999px, 100px, 0); }
+  20% { clip: rect(20px, 9999px, 50px, 0); }
+  40% { clip: rect(80px, 9999px, 110px, 0); }
+  60% { clip: rect(40px, 9999px, 70px, 0); }
+  80% { clip: rect(10px, 9999px, 30px, 0); }
+  100% { clip: rect(55px, 9999px, 95px, 0); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-foreground;
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}

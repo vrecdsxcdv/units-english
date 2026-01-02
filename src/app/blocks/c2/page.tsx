@@ -30,6 +30,7 @@ import AcademicVocabulary from "@/components/lesson/academicvocabulary/AcademicV
 import Collocations from "@/components/lesson/collocations/Collocations";
 import WorkBusiness from "@/components/lesson/workbusiness/WorkBusiness";
 import MedicalEnglish from "@/components/lesson/medicalenglish/MedicalEnglish";
+import LegalEnglish from "@/components/lesson/legalenglish/LegalEnglish";
 import PoliticalVocabulary from "@/components/lesson/politicalvocabulary/PoliticalVocabulary";
 import MediaJournalism from "@/components/lesson/mediajournalism/MediaJournalism";
 import PsychologyEmotions from "@/components/lesson/psychologyemotions/PsychologyEmotions";
@@ -115,6 +116,7 @@ export default async function Page({ searchParams }: Props) {
     "collocations",
     "workbusiness",
     "medicalenglish",
+    "legalenglish",
     "politicalvocabulary",
     "mediajournalism",
     "psychologyemotions",
@@ -190,6 +192,8 @@ export default async function Page({ searchParams }: Props) {
       "Work & Business (stakeholder, ROI, merger, downsize, leverage)",
     medicalenglish:
       "Medical English (diagnosis, prognosis, chronic, palliative)",
+    legalenglish:
+      "Legal English (contract, litigation, verdict, plaintiff, defendant)",
     politicalvocabulary:
       "Political Vocabulary (sovereignty, referendum, coalition, filibuster)",
     mediajournalism:
@@ -382,6 +386,9 @@ export default async function Page({ searchParams }: Props) {
     case "medicalenglish":
       Content = <MedicalEnglish step={step} key={`medicalenglish-${step}`} />;
       break;
+    case "legalenglish":
+      Content = <LegalEnglish step={step} key={`legalenglish-${step}`} />;
+      break;
     case "politicalvocabulary":
       Content = (
         <PoliticalVocabulary step={step} key={`politicalvocabulary-${step}`} />
@@ -540,10 +547,10 @@ export default async function Page({ searchParams }: Props) {
         name="Advanced English"
         description="Курс английского языка уровня B2-C1 Advanced: сложная грамматика, идиомы, академический английский, деловая лексика. Более 50 продвинутых уроков для достижения высокого уровня владения языком."
       />
-      <div className="flex min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         <Sidebar activeTopic={t} level="c2" />
-        <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold mb-6">
+        <main className="p-4 md:p-6 pt-16">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
           Тема урока: <span className="text-indigo-600">{topicTitles[t]}</span>
         </h1>
 

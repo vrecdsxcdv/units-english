@@ -63,8 +63,7 @@ export default function Header() {
           href="/tutor"
           className="hover:text-indigo-600 transition flex items-center gap-1"
         >
-          <span>😉</span>
-          <span>Speakly</span>
+          <span>Vocab AI</span>
         </Link>
       </nav>
       {session?.user ? (
