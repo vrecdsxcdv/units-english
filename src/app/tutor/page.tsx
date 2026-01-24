@@ -224,6 +224,47 @@ export default function TutorPage() {
     );
   }
 
+  // Require authentication to use Vocab AI
+  if (!session?.user) {
+    return (
+      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-md w-full text-center"
+        >
+          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#007AFF] to-[#5856D6] flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#007AFF]/20">
+            <Sparkles className="w-10 h-10 text-white" />
+          </div>
+          <h1 className="text-2xl font-semibold text-[#1d1d1f] mb-3">
+            Vocab AI — твой персональный репетитор
+          </h1>
+          <p className="text-[#86868b] mb-6 leading-relaxed">
+            Войди в аккаунт, чтобы получить доступ к персональному AI-репетитору.
+            Vocab AI запоминает все твои диалоги и адаптируется под твой уровень.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/login"
+              className="px-6 py-3 rounded-xl bg-[#007AFF] hover:bg-[#0066CC] text-white font-medium transition-colors"
+            >
+              Войти
+            </Link>
+            <Link
+              href="/register"
+              className="px-6 py-3 rounded-xl bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] font-medium transition-colors border border-[#d2d2d7]"
+            >
+              Регистрация
+            </Link>
+          </div>
+          <p className="text-xs text-[#86868b] mt-6">
+            После регистрации у тебя будет свой личный AI-репетитор, который запоминает историю всех диалогов
+          </p>
+        </motion.div>
+      </div>
+    );
+  }
+
   const isNewChat = messages.length === 1 && messages[0].id === "greeting";
 
   return (
@@ -326,8 +367,8 @@ export default function TutorPage() {
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <div className="hidden sm:block">
-                  <h1 className="text-[15px] font-semibold text-[#1d1d1f]">Vocab OS</h1>
-                  <p className="text-[11px] text-[#86868b] -mt-0.5">Репетитор</p>
+                  <h1 className="text-[15px] font-semibold text-[#1d1d1f]">Vocab AI</h1>
+                  <p className="text-[11px] text-[#86868b] -mt-0.5">Персональный репетитор</p>
                 </div>
               </Link>
             </div>
@@ -493,7 +534,7 @@ export default function TutorPage() {
               </button>
             </div>
             <p className="text-center text-[#86868b] text-[11px] mt-3">
-              {session?.user ? "Чаты сохраняются автоматически" : "Войдите, чтобы сохранять историю"}
+              Vocab AI запоминает все диалоги и адаптируется под тебя
             </p>
           </div>
         </div>
