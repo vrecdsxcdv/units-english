@@ -17,15 +17,35 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
+      }
+      // Refetch user data on update (e.g., after avatar change)
+      if (trigger === "update" && token.id) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { name: true, image: true },
+        });
+        if (dbUser) {
+          token.name = dbUser.name;
+          token.picture = dbUser.image;
+        }
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
+        // Fetch latest user data including image
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { image: true, name: true },
+        });
+        if (dbUser) {
+          session.user.image = dbUser.image;
+          session.user.name = dbUser.name;
+        }
       }
       return session;
     },
