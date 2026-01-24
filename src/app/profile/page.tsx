@@ -43,17 +43,17 @@ type SkillsData = {
   lastAssessedAt: string | null;
 };
 
-const skillLabels: { key: keyof SkillsData["skills"]; label: string; icon: string }[] = [
-  { key: "grammar", label: "Грамматика", icon: "📝" },
-  { key: "vocabulary", label: "Словарный запас", icon: "📚" },
-  { key: "pronunciation", label: "Произношение", icon: "🗣️" },
-  { key: "listening", label: "Аудирование", icon: "👂" },
-  { key: "speaking", label: "Разговорный", icon: "💬" },
-  { key: "slang", label: "Сленг", icon: "🔥" },
-  { key: "wordFormation", label: "Словообразование", icon: "🧩" },
-  { key: "fluency", label: "Беглость", icon: "⚡" },
-  { key: "writing", label: "Письмо", icon: "✍️" },
-  { key: "comprehension", label: "Понимание", icon: "🧠" },
+const skillLabels: { key: keyof SkillsData["skills"]; label: string; shortLabel: string }[] = [
+  { key: "grammar", label: "Грамматика", shortLabel: "Грам." },
+  { key: "vocabulary", label: "Словарный запас", shortLabel: "Слова" },
+  { key: "pronunciation", label: "Произношение", shortLabel: "Произн." },
+  { key: "listening", label: "Аудирование", shortLabel: "Аудир." },
+  { key: "speaking", label: "Разговорный", shortLabel: "Разг." },
+  { key: "slang", label: "Сленг", shortLabel: "Сленг" },
+  { key: "wordFormation", label: "Словообразование", shortLabel: "Словообр." },
+  { key: "fluency", label: "Беглость", shortLabel: "Бегл." },
+  { key: "writing", label: "Письмо", shortLabel: "Письмо" },
+  { key: "comprehension", label: "Понимание", shortLabel: "Поним." },
 ];
 
 // Circular Progress Ring
@@ -96,38 +96,144 @@ function ProgressRing({ progress, size = 120, strokeWidth = 8, color = "#8B5CF6"
   );
 }
 
-// Skill Bar with animation
-function SkillBar({ skill, value, delay }: { skill: typeof skillLabels[0]; value: number; delay: number }) {
-  const percent = Math.round(value * 100);
-  const getColor = (p: number) => {
-    if (p >= 80) return "from-emerald-400 to-emerald-500";
-    if (p >= 60) return "from-blue-400 to-blue-500";
-    if (p >= 40) return "from-violet-400 to-violet-500";
-    return "from-orange-400 to-orange-500";
+// Radar Chart Component
+function RadarChart({ skills }: { skills: SkillsData["skills"] }) {
+  const size = 300;
+  const center = size / 2;
+  const maxRadius = 110;
+  const levels = 5;
+  const numSkills = skillLabels.length;
+  const angleStep = (2 * Math.PI) / numSkills;
+
+  const getPoint = (index: number, radius: number) => {
+    const angle = angleStep * index - Math.PI / 2;
+    return {
+      x: center + radius * Math.cos(angle),
+      y: center + radius * Math.sin(angle),
+    };
   };
 
+  // Generate grid lines
+  const gridLines = [];
+  for (let level = 1; level <= levels; level++) {
+    const radius = (maxRadius / levels) * level;
+    const points = skillLabels.map((_, i) => {
+      const p = getPoint(i, radius);
+      return `${p.x},${p.y}`;
+    }).join(" ");
+    gridLines.push(
+      <polygon
+        key={level}
+        points={points}
+        fill="none"
+        stroke="rgba(139, 92, 246, 0.1)"
+        strokeWidth="1"
+      />
+    );
+  }
+
+  // Generate axis lines
+  const axisLines = skillLabels.map((_, i) => {
+    const end = getPoint(i, maxRadius);
+    return (
+      <line
+        key={i}
+        x1={center}
+        y1={center}
+        x2={end.x}
+        y2={end.y}
+        stroke="rgba(139, 92, 246, 0.15)"
+        strokeWidth="1"
+      />
+    );
+  });
+
+  // Generate data polygon
+  const dataPoints = skillLabels.map((skill, i) => {
+    const value = skills[skill.key];
+    const radius = maxRadius * value;
+    const p = getPoint(i, radius);
+    return `${p.x},${p.y}`;
+  }).join(" ");
+
+  // Generate labels
+  const labels = skillLabels.map((skill, i) => {
+    const labelRadius = maxRadius + 25;
+    const p = getPoint(i, labelRadius);
+    const value = Math.round(skills[skill.key] * 100);
+    return (
+      <g key={skill.key}>
+        <text
+          x={p.x}
+          y={p.y}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          className="fill-gray-600 text-[10px] font-medium"
+        >
+          {skill.shortLabel}
+        </text>
+        <text
+          x={p.x}
+          y={p.y + 12}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          className="fill-violet-600 text-[9px] font-bold"
+        >
+          {value}%
+        </text>
+      </g>
+    );
+  });
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.5 }}
+    <motion.svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="mx-auto"
     >
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <span className="text-lg">{skill.icon}</span>
-          <span className="text-gray-700 text-sm font-medium">{skill.label}</span>
-        </div>
-        <span className="text-gray-900 font-bold text-sm">{percent}%</span>
-      </div>
-      <div className="h-2.5 rounded-full bg-gray-100 overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${percent}%` }}
-          transition={{ delay: delay + 0.2, duration: 0.8, ease: "easeOut" }}
-          className={`h-full rounded-full bg-gradient-to-r ${getColor(percent)}`}
-        />
-      </div>
-    </motion.div>
+      {/* Grid */}
+      {gridLines}
+      {axisLines}
+
+      {/* Data area */}
+      <motion.polygon
+        points={dataPoints}
+        fill="rgba(139, 92, 246, 0.2)"
+        stroke="rgba(139, 92, 246, 0.8)"
+        strokeWidth="2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      />
+
+      {/* Data points */}
+      {skillLabels.map((skill, i) => {
+        const value = skills[skill.key];
+        const radius = maxRadius * value;
+        const p = getPoint(i, radius);
+        return (
+          <motion.circle
+            key={skill.key}
+            cx={p.x}
+            cy={p.y}
+            r="4"
+            fill="#8B5CF6"
+            stroke="white"
+            strokeWidth="2"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.4 + i * 0.05, duration: 0.3 }}
+          />
+        );
+      })}
+
+      {/* Labels */}
+      {labels}
+    </motion.svg>
   );
 }
 
@@ -487,15 +593,8 @@ export default function ProfilePage() {
             </div>
 
             {skillsData?.skills ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {skillLabels.map((skill, i) => (
-                  <SkillBar
-                    key={skill.key}
-                    skill={skill}
-                    value={skillsData.skills[skill.key]}
-                    delay={0.5 + i * 0.05}
-                  />
-                ))}
+              <div className="flex justify-center">
+                <RadarChart skills={skillsData.skills} />
               </div>
             ) : (
               <div className="flex items-center justify-center py-12">
