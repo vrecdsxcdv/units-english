@@ -136,7 +136,6 @@ export default function ProfilePage() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
   const { data: stats } = useSWR<ProgressStats>(
     session?.user ? "/api/user/progress-stats" : null,
@@ -182,7 +181,6 @@ export default function ProfilePage() {
       const reader = new FileReader();
       reader.onload = async (event) => {
         const base64 = event.target?.result as string;
-        setAvatarPreview(base64);
 
         // Upload to server
         const response = await fetch("/api/user/avatar", {
@@ -195,7 +193,6 @@ export default function ProfilePage() {
           await updateSession();
         } else {
           alert("Не удалось загрузить аватар");
-          setAvatarPreview(null);
         }
         setUploading(false);
       };
@@ -213,7 +210,6 @@ export default function ProfilePage() {
     try {
       const response = await fetch("/api/user/avatar", { method: "DELETE" });
       if (response.ok) {
-        setAvatarPreview(null);
         await updateSession();
       }
     } catch {
@@ -296,13 +292,14 @@ export default function ProfilePage() {
                     onChange={handleAvatarChange}
                     className="hidden"
                   />
-                  {(avatarPreview || session.user.image) ? (
+                  {session.user.image ? (
                     <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-lg">
                       <Image
-                        src={avatarPreview || session.user.image || ""}
+                        src={session.user.image}
                         alt="Avatar"
                         fill
                         className="object-cover"
+                        unoptimized
                       />
                       {uploading && (
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -344,7 +341,7 @@ export default function ProfilePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </button>
-                    {(avatarPreview || session.user.image) && (
+                    {session.user.image && (
                       <button
                         onClick={handleRemoveAvatar}
                         className="p-2 rounded-full bg-white/90 hover:bg-white text-red-500"
